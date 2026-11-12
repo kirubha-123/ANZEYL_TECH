@@ -1,0 +1,364 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #f7f5ef;
+    --foreground: #263746;
+    --card: #ffffff;
+    --card-foreground: #263746;
+    --primary: #176b87;
+    --primary-hover: #12566c;
+    --accent-rose: #c97761;
+    --accent-amber: #f2b880;
+    --accent-emerald: #4c9a89;
+    --accent-cyan: #176b87;
+    --accent-violet: #5b7782;
+    --border: #e5e7eb;
+  }
+}
+
+body {
+  background-color: #f7f5ef;
+  color: #263746;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Colorful Dynamic Mesh Background */
+.bg-colorful-mesh {
+  background: #f7f5ef;
+}
+
+.bg-colorful-hero {
+  background: linear-gradient(180deg, #dcefea 0%, #f7f5ef 78%);
+}
+
+.bg-colorful-subtle {
+  background: #eef6f3;
+}
+
+/* Colorful Glass & Card Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #e5e7eb;
+}
+
+.glass-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 24px rgba(38, 55, 70, 0.06);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(23, 107, 135, 0.35);
+  box-shadow: 0 12px 28px rgba(38, 55, 70, 0.1);
+}
+
+/* Specific Card Color Glows */
+.card-glow-rose:hover {
+  border-color: rgba(201, 119, 97, 0.45);
+}
+
+.card-glow-amber:hover {
+  border-color: rgba(242, 184, 128, 0.6);
+}
+
+.card-glow-emerald:hover {
+  border-color: rgba(76, 154, 137, 0.5);
+}
+
+.card-glow-cyan:hover {
+  border-color: rgba(23, 107, 135, 0.5);
+}
+
+.card-glow-violet:hover {
+  border-color: rgba(91, 119, 130, 0.45);
+}
+
+.card-glow-indigo:hover {
+  border-color: rgba(23, 107, 135, 0.45);
+}
+
+/* Rainbow Strip */
+.rainbow-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #176b87 0%, #4c9a89 55%, #f2b880 100%);
+}
+
+.rainbow-border {
+  border-image: linear-gradient(90deg, #176b87, #4c9a89, #f2b880) 1;
+}
+
+/* Human-Crafted Surface & Inputs */
+.human-surface {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 32px rgba(38, 55, 70, 0.08);
+}
+
+.human-input {
+  background-color: #ffffff;
+  border: 1px solid #d6dde0;
+  color: #263746;
+  transition: all 0.15s ease-in-out;
+}
+
+.human-input:focus {
+  outline: none;
+  border-color: #176b87;
+  box-shadow: 0 0 0 3px rgba(23, 107, 135, 0.14);
+}
+
+/* Vibrant Buttons */
+.btn-colorful-primary {
+  background: #176b87;
+  border: 1px solid #12566c;
+  box-shadow: 0 4px 12px rgba(23, 107, 135, 0.18);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-colorful-primary:hover {
+  background: #12566c;
+  box-shadow: 0 6px 16px rgba(23, 107, 135, 0.24);
+}
+
+.btn-colorful-primary:active {
+  transform: translateY(0);
+}
+
+.btn-colorful-amber {
+  background: #f2b880;
+  border: 1px solid #dd9d67;
+  color: #263746;
+  box-shadow: 0 4px 12px rgba(201, 119, 97, 0.16);
+}
+
+.btn-colorful-amber:hover {
+  background: #eaa96c;
+  box-shadow: 0 6px 16px rgba(201, 119, 97, 0.22);
+}
+
+.btn-colorful-emerald {
+  background: #4c9a89;
+  border: 1px solid #3c8475;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(76, 154, 137, 0.18);
+}
+
+.btn-colorful-emerald:hover {
+  background: #3c8475;
+  box-shadow: 0 6px 16px rgba(76, 154, 137, 0.24);
+}
+
+/* Custom Text Gradients */
+.text-gradient-brand {
+  background: linear-gradient(135deg, #176b87 0%, #4c9a89 70%, #c97761 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-rainbow {
+  background: linear-gradient(90deg, #176b87, #4c9a89, #f2b880);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-sunset {
+  background: linear-gradient(135deg, #c97761 0%, #f2b880 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-aurora {
+  background: linear-gradient(135deg, #176b87 0%, #4c9a89 70%, #f2b880 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #c97761 0%, #f2b880 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #4c9a89 0%, #176b87 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-violet {
+  background: linear-gradient(135deg, #5b7782 0%, #176b87 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Vibrant Badges */
+.badge-vibrant-rose {
+  background: #faeee9;
+  border: 1px solid #e8c6ba;
+  color: #9c5545;
+}
+
+.badge-vibrant-amber {
+  background: #fff3e5;
+  border: 1px solid #f2d0a8;
+  color: #9a6031;
+}
+
+.badge-vibrant-emerald {
+  background: #e7f4ef;
+  border: 1px solid #b9ddd1;
+  color: #287362;
+}
+
+.badge-vibrant-cyan {
+  background: #e5f2f5;
+  border: 1px solid #b6d7df;
+  color: #176b87;
+}
+
+.badge-vibrant-violet {
+  background: #edf1f2;
+  border: 1px solid #cedbdd;
+  color: #4a6873;
+}
+
+.badge-vibrant-rainbow {
+  background: #e5f2f0;
+  border: 1px solid #b9d8d1;
+  color: #176b87;
+}
+
+/* Keyframe animations */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+@keyframes rainbowShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-rainbow-shift {
+  background-size: 200% 200%;
+  animation: rainbowShift 6s ease infinite;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #eef1ef;
+}
+::-webkit-scrollbar-thumb {
+  background: #9ab8b8;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6d9a9d;
+}
+
+/* Existing page utility compatibility: keeps older route markup on the same
+   warm surface system without changing component structure or behavior. */
+[class~="bg-[#090c15]"],
+[class~="bg-[#070911]"],
+[class~="bg-slate-950"] {
+  background-color: #f7f5ef;
+}
+
+[class~="bg-[#0b0e18]"],
+[class~="bg-[#0d111d]"],
+[class~="bg-[#0e1322]"],
+[class~="bg-[#0f131a]"],
+[class~="bg-[#0f1424]"],
+[class~="bg-[#121626]"],
+[class~="bg-[#12162a]"],
+[class~="bg-[#14192a]"],
+[class~="bg-[#151923]"],
+[class~="bg-[#080b12]"],
+[class~="bg-[#0a0d18]"] {
+  background-color: #ffffff;
+}
+
+[class~="bg-white/5"] {
+  background-color: #f2f6f4;
+}
+
+[class~="border-white/5"],
+[class~="border-white/10"],
+[class~="border-white/15"],
+[class~="border-slate-800"] {
+  border-color: #e5e7eb;
+}
+
+[class~="text-slate-100"],
+[class~="text-slate-200"],
+[class~="text-slate-300"] {
+  color: #526675;
+}
+
+[class~="text-slate-400"],
+[class~="text-slate-500"] {
+  color: #64748b;
+}
+
+/* Ensure headings and body text that used legacy text-white show as dark text on warm white */
+h1[class~="text-white"],
+h2[class~="text-white"],
+h3[class~="text-white"],
+h4[class~="text-white"],
+p[class~="text-white"],
+strong[class~="text-white"],
+label[class~="text-white"] {
+  color: #263746;
+}
+
+/* High contrast preservation: ensure buttons, badges, and colored pills retain crisp white text */
+button[class*="btn-colorful-primary"],
+a[class*="btn-colorful-primary"],
+button[class*="btn-colorful-primary"] *,
+a[class*="btn-colorful-primary"] *,
+button[class*="btn-colorful-emerald"],
+a[class*="btn-colorful-emerald"],
+button[class*="btn-colorful-emerald"] *,
+a[class*="btn-colorful-emerald"] *,
+[class~="bg-emerald-500"],
+[class~="bg-cyan-500"],
+[class~="bg-rose-500"],
+[class~="bg-indigo-600"] {
+  color: #ffffff;
+}
+
+button[class*="btn-colorful-amber"],
+a[class*="btn-colorful-amber"],
+button[class*="btn-colorful-amber"] *,
+a[class*="btn-colorful-amber"] * {
+  color: #263746;
+}
+
+footer [class~="text-slate-300"] {
+  color: #dcefea;
+}
+
+footer [class~="text-slate-400"],
+footer [class~="text-slate-500"] {
+  color: #b7cfca;
+}
