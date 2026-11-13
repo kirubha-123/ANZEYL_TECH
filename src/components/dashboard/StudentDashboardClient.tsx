@@ -137,23 +137,35 @@ function useClientGoal(serverFallback: string): string {
 }
 
 const EMPTY_SLUGS: string[] = [];
+let cachedRawSlugs: string | null = null;
+let cachedParsedSlugs: string[] = EMPTY_SLUGS;
+
+function getCachedEnrolledSlugs(): string[] {
+  if (typeof window === "undefined") return EMPTY_SLUGS;
+  try {
+    const raw = localStorage.getItem("anzeyl_student_enrolled_courses");
+    if (raw === cachedRawSlugs) {
+      return cachedParsedSlugs;
+    }
+    cachedRawSlugs = raw;
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        cachedParsedSlugs = parsed;
+        return cachedParsedSlugs;
+      }
+    }
+    cachedParsedSlugs = EMPTY_SLUGS;
+    return cachedParsedSlugs;
+  } catch {
+    return EMPTY_SLUGS;
+  }
+}
 
 function useEnrolledSlugs(): string[] {
   return React.useSyncExternalStore(
     emptySubscribe,
-    () => {
-      if (typeof window === "undefined") return EMPTY_SLUGS;
-      try {
-        const saved = localStorage.getItem("anzeyl_student_enrolled_courses");
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-        }
-      } catch {
-        // Ignore
-      }
-      return EMPTY_SLUGS;
-    },
+    getCachedEnrolledSlugs,
     () => EMPTY_SLUGS
   );
 }

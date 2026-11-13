@@ -40,23 +40,35 @@ const LOCAL_ENROLLMENT_KEY = "anzeyl_student_enrolled_courses";
 
 const emptySubscribe = () => () => {};
 const EMPTY_SLUGS: string[] = [];
+let cachedRawSlugs: string | null = null;
+let cachedParsedSlugs: string[] = EMPTY_SLUGS;
+
+function getCachedEnrolledSlugs(): string[] {
+  if (typeof window === "undefined") return EMPTY_SLUGS;
+  try {
+    const raw = localStorage.getItem(LOCAL_ENROLLMENT_KEY);
+    if (raw === cachedRawSlugs) {
+      return cachedParsedSlugs;
+    }
+    cachedRawSlugs = raw;
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        cachedParsedSlugs = parsed;
+        return cachedParsedSlugs;
+      }
+    }
+    cachedParsedSlugs = EMPTY_SLUGS;
+    return cachedParsedSlugs;
+  } catch {
+    return EMPTY_SLUGS;
+  }
+}
 
 function useEnrolledSlugs(): string[] {
   return React.useSyncExternalStore(
     emptySubscribe,
-    () => {
-      if (typeof window === "undefined") return EMPTY_SLUGS;
-      try {
-        const saved = localStorage.getItem(LOCAL_ENROLLMENT_KEY);
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-        }
-      } catch {
-        // Ignore
-      }
-      return EMPTY_SLUGS;
-    },
+    getCachedEnrolledSlugs,
     () => EMPTY_SLUGS
   );
 }
