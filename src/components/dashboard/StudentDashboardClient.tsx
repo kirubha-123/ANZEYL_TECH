@@ -563,6 +563,7 @@ export function StudentDashboardClient({
           <div className="flex items-center gap-4">
             <button
               type="button"
+              suppressHydrationWarning
               onClick={() => setActiveCourseTab("enrolled")}
               className={`text-sm font-bold pb-2 transition-all border-b-2 -mb-[13px] ${activeCourseTab === "enrolled"
                   ? "border-[#176b87] text-[#176b87]"
@@ -573,6 +574,7 @@ export function StudentDashboardClient({
             </button>
             <button
               type="button"
+              suppressHydrationWarning
               onClick={() => setActiveCourseTab("available")}
               className={`text-sm font-bold pb-2 transition-all border-b-2 -mb-[13px] ${activeCourseTab === "available"
                   ? "border-[#176b87] text-[#176b87]"

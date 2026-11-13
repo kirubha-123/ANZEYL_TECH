@@ -32,10 +32,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className="h-full antialiased light"
       style={{ colorScheme: "light" }}
     >
-      <body className="min-h-full flex flex-col bg-[#f7f5ef] text-[#263746] selection:bg-[#dcefea] selection:text-[#263746] font-sans">{children}</body>
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[#f7f5ef] text-[#263746] selection:bg-[#dcefea] selection:text-[#263746] font-sans">{children}</body>
     </html>
   );
 }
