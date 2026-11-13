@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import {
   BookOpenIcon,
@@ -136,6 +136,28 @@ function useClientGoal(serverFallback: string): string {
   );
 }
 
+const EMPTY_SLUGS: string[] = [];
+
+function useEnrolledSlugs(): string[] {
+  return React.useSyncExternalStore(
+    emptySubscribe,
+    () => {
+      if (typeof window === "undefined") return EMPTY_SLUGS;
+      try {
+        const saved = localStorage.getItem("anzeyl_student_enrolled_courses");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch {
+        // Ignore
+      }
+      return EMPTY_SLUGS;
+    },
+    () => EMPTY_SLUGS
+  );
+}
+
 export function StudentDashboardClient({
   studentProfile,
   initialEnrolled,
@@ -144,63 +166,42 @@ export function StudentDashboardClient({
 }: StudentDashboardProps) {
   const isGuest = Boolean(studentProfile.isGuest || studentProfile.role === "guest");
 
-  const [enrolled] = useState<EnrolledCourseData[]>(() => {
-    if (typeof window === "undefined") return initialEnrolled;
-    try {
-      const saved = localStorage.getItem("anzeyl_student_enrolled_courses");
-      if (saved) {
-        const stored = JSON.parse(saved);
-        if (Array.isArray(stored) && stored.length > 0) {
-          const storedSet = new Set(stored);
-          const newlyEnrolled = initialAvailable.filter(
-            (c) => storedSet.has(c.id) || storedSet.has(c.slug)
-          );
-          if (newlyEnrolled.length > 0) {
-            return [
-              ...initialEnrolled,
-              ...newlyEnrolled.map((c) => ({
-                id: c.id,
-                slug: c.slug,
-                title: c.title,
-                description: c.description,
-                instructorName: c.instructorName,
-                category: c.category,
-                difficulty: c.difficulty,
-                totalLessons: c.totalLessons,
-                completedLessons: 0,
-                progressPercent: 0,
-                isCompleted: false,
-                nextLessonTitle: "Lesson 1",
-                nextLessonMinutes: null,
-              })),
-            ];
-          }
-        }
-      }
-    } catch {
-      // Ignore
-    }
-    return initialEnrolled;
-  });
+  const enrolledSlugs = useEnrolledSlugs();
 
-  const [available] = useState<AvailableCourseData[]>(() => {
-    if (typeof window === "undefined") return initialAvailable;
-    try {
-      const saved = localStorage.getItem("anzeyl_student_enrolled_courses");
-      if (saved) {
-        const stored = JSON.parse(saved);
-        if (Array.isArray(stored) && stored.length > 0) {
-          const storedSet = new Set(stored);
-          return initialAvailable.filter(
-            (c) => !storedSet.has(c.id) && !storedSet.has(c.slug)
-          );
-        }
-      }
-    } catch {
-      // Ignore
-    }
-    return initialAvailable;
-  });
+  const enrolled = useMemo<EnrolledCourseData[]>(() => {
+    if (enrolledSlugs.length === 0) return initialEnrolled;
+    const storedSet = new Set(enrolledSlugs);
+    const newlyEnrolled = initialAvailable.filter(
+      (c) => storedSet.has(c.id) || storedSet.has(c.slug)
+    );
+    if (newlyEnrolled.length === 0) return initialEnrolled;
+    return [
+      ...initialEnrolled,
+      ...newlyEnrolled.map((c) => ({
+        id: c.id,
+        slug: c.slug,
+        title: c.title,
+        description: c.description,
+        instructorName: c.instructorName,
+        category: c.category,
+        difficulty: c.difficulty,
+        totalLessons: c.totalLessons,
+        completedLessons: 0,
+        progressPercent: 0,
+        isCompleted: false,
+        nextLessonTitle: "Lesson 1",
+        nextLessonMinutes: null,
+      })),
+    ];
+  }, [initialEnrolled, initialAvailable, enrolledSlugs]);
+
+  const available = useMemo<AvailableCourseData[]>(() => {
+    if (enrolledSlugs.length === 0) return initialAvailable;
+    const storedSet = new Set(enrolledSlugs);
+    return initialAvailable.filter(
+      (c) => !storedSet.has(c.id) && !storedSet.has(c.slug)
+    );
+  }, [initialAvailable, enrolledSlugs]);
 
   const [activeCourseTab, setActiveCourseTab] = useState<"enrolled" | "available">(
     isGuest || initialEnrolled.length === 0 ? "available" : "enrolled"

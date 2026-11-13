@@ -38,27 +38,41 @@ interface CoursesClientProps {
 
 const LOCAL_ENROLLMENT_KEY = "anzeyl_student_enrolled_courses";
 
-export default function CoursesClient({ initialCourses, isLoggedIn }: CoursesClientProps) {
-  const [courses] = useState<CourseCardData[]>(() => {
-    if (typeof window === "undefined") return initialCourses;
-    try {
-      const saved = localStorage.getItem(LOCAL_ENROLLMENT_KEY);
-      if (saved) {
-        const stored = JSON.parse(saved);
-        if (Array.isArray(stored) && stored.length > 0) {
-          const storedSet = new Set(stored);
-          return initialCourses.map((c) =>
-            storedSet.has(c.id) || storedSet.has(c.slug)
-              ? { ...c, enrolled: true }
-              : c
-          );
+const emptySubscribe = () => () => {};
+const EMPTY_SLUGS: string[] = [];
+
+function useEnrolledSlugs(): string[] {
+  return React.useSyncExternalStore(
+    emptySubscribe,
+    () => {
+      if (typeof window === "undefined") return EMPTY_SLUGS;
+      try {
+        const saved = localStorage.getItem(LOCAL_ENROLLMENT_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
         }
+      } catch {
+        // Ignore
       }
-    } catch {
-      // Ignore
-    }
-    return initialCourses;
-  });
+      return EMPTY_SLUGS;
+    },
+    () => EMPTY_SLUGS
+  );
+}
+
+export default function CoursesClient({ initialCourses, isLoggedIn }: CoursesClientProps) {
+  const enrolledSlugs = useEnrolledSlugs();
+
+  const courses = useMemo<CourseCardData[]>(() => {
+    if (enrolledSlugs.length === 0) return initialCourses;
+    const storedSet = new Set(enrolledSlugs);
+    return initialCourses.map((c) =>
+      storedSet.has(c.id) || storedSet.has(c.slug)
+        ? { ...c, enrolled: true }
+        : c
+    );
+  }, [initialCourses, enrolledSlugs]);
   const [search, setSearch] = useState("");
 
   const [activeView, setActiveView] = useState<"my-courses" | "all-courses">(() =>
