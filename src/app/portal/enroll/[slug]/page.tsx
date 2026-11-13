@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ANZEYL_COURSES, getCourseBySlug } from "@/lib/courseData";
@@ -22,7 +22,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function EnrollPage({
+async function EnrollContent({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -35,4 +35,16 @@ export default async function EnrollPage({
   }
 
   return <EnrollClient course={course} />;
+}
+
+export default function EnrollPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#f7f5ef] animate-pulse" />}>
+      <EnrollContent params={params} />
+    </Suspense>
+  );
 }

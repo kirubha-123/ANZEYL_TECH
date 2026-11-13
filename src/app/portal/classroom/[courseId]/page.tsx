@@ -6,13 +6,20 @@ export function generateStaticParams() {
   return ANZEYL_COURSES.map((c) => ({ courseId: c.slug }));
 }
 
-export default async function ClassroomPage({
+async function ClassroomContent({
   params,
 }: {
   params: Promise<{ courseId: string }>;
 }) {
   const { courseId } = await params;
+  return <ClassroomClient courseId={courseId} />;
+}
 
+export default function ClassroomPage({
+  params,
+}: {
+  params: Promise<{ courseId: string }>;
+}) {
   return (
     <Suspense
       fallback={
@@ -25,7 +32,7 @@ export default async function ClassroomPage({
         </div>
       }
     >
-      <ClassroomClient courseId={courseId} />
+      <ClassroomContent params={params} />
     </Suspense>
   );
 }

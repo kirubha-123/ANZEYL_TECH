@@ -10,13 +10,20 @@ export function generateStaticParams() {
   ];
 }
 
-export default async function QuizRunnerPage({
+async function QuizRunnerContent({
   params,
 }: {
   params: Promise<{ quizId: string }>;
 }) {
   const { quizId } = await params;
+  return <QuizRunnerClient quizId={quizId} />;
+}
 
+export default function QuizRunnerPage({
+  params,
+}: {
+  params: Promise<{ quizId: string }>;
+}) {
   return (
     <Suspense
       fallback={
@@ -26,7 +33,7 @@ export default async function QuizRunnerPage({
         </div>
       }
     >
-      <QuizRunnerClient quizId={quizId} />
+      <QuizRunnerContent params={params} />
     </Suspense>
   );
 }
