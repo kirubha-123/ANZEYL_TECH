@@ -4,8 +4,6 @@ import { createClient } from "@/lib/supabase/server";
 import CoursesClient, { type CourseCardData } from "./CoursesClient";
 import { ANZEYL_COURSES } from "@/lib/courseData";
 
-export const dynamic = "force-dynamic";
-
 export default async function MyCoursesPage() {
   await connection();
   const supabase = await createClient();

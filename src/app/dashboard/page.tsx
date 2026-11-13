@@ -11,8 +11,6 @@ import {
   type ActivityItem,
 } from "@/components/dashboard/StudentDashboardClient";
 
-export const dynamic = "force-dynamic";
-
 const FALLBACK_COURSES = [
   {
     id: "course-fullstack",

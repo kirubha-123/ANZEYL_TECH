@@ -5,8 +5,6 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { dashboardForRole } from "@/lib/auth/roles";
 
-export const dynamic = "force-dynamic";
-
 async function MentorDashboardContent() {
   await connection();
   const cookieStore = await cookies();
