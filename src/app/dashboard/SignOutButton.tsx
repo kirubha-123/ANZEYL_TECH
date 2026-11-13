@@ -10,10 +10,32 @@ export function SignOutButton() {
 
   const handleSignOut = async () => {
     setLoading(true);
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    router.push("/login");
+    document.cookie = "anzeyl_demo_role=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "anzeyl_user_name=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "anzeyl_user_email=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "anzeyl_user_goal=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "anzeyl_user_phone=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("anzeyl_user_name");
+      localStorage.removeItem("anzeyl_user_email");
+      localStorage.removeItem("anzeyl_user_goal");
+      localStorage.removeItem("anzeyl_user_phone");
+      localStorage.removeItem("anzeyl_demo_role");
+    }
+
+    try {
+      const supabase = createClient();
+      await supabase.auth.signOut();
+    } catch {
+      // Ignore
+    }
+
+    router.replace("/dashboard");
     router.refresh();
+    if (typeof window !== "undefined") {
+      window.location.reload();
+    }
   };
 
   return (

@@ -25,15 +25,29 @@ export function AdminHeader({
   async function handleSignOut() {
     if (signingOut) return;
     setSigningOut(true);
+    document.cookie = "anzeyl_demo_role=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "anzeyl_user_name=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "anzeyl_user_email=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "anzeyl_user_goal=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "anzeyl_user_phone=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("anzeyl_user_name");
+      localStorage.removeItem("anzeyl_user_email");
+      localStorage.removeItem("anzeyl_user_goal");
+      localStorage.removeItem("anzeyl_user_phone");
+      localStorage.removeItem("anzeyl_demo_role");
+    }
+
     try {
-      document.cookie = "anzeyl_demo_role=; path=/; max-age=0;";
       const supabase = createClient();
       await supabase.auth.signOut();
-      router.push("/admin/login");
-      router.refresh();
     } catch {
-      setSigningOut(false);
+      // Ignore
     }
+
+    router.replace("/admin/login");
+    router.refresh();
   }
 
   return (
