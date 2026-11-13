@@ -20,8 +20,7 @@
 # production
 /build
 
-# local scratch / nested folder
-ANZEYL_TECH-main/
+# misc
 .DS_Store
 *.pem
 
