@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { connection } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import CoursesClient, { type CourseCardData } from "./CoursesClient";
 import { ANZEYL_COURSES } from "@/lib/courseData";
 
-export default async function MyCoursesPage() {
+async function CoursesContent() {
   await connection();
   const supabase = await createClient();
   const { data: userData } = await supabase.auth.getUser();
@@ -93,5 +93,26 @@ export default async function MyCoursesPage() {
       initialCourses={baseCourses}
       isLoggedIn={Boolean(userData?.user)}
     />
+  );
+}
+
+function CoursesSkeleton() {
+  return (
+    <div className="space-y-6 animate-pulse">
+      <div className="h-28 bg-white border border-[#e5e7eb] rounded-3xl" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[1, 2, 3].map((n) => (
+          <div key={n} className="h-80 bg-white border border-[#e5e7eb] rounded-3xl" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function MyCoursesPage() {
+  return (
+    <Suspense fallback={<CoursesSkeleton />}>
+      <CoursesContent />
+    </Suspense>
   );
 }
