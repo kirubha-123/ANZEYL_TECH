@@ -7,20 +7,24 @@ import { MenuIcon, XIcon } from "./Icons";
 import { createClient } from "@/lib/supabase/client";
 import type { User } from "@supabase/supabase-js";
 
+const emptySubscribe = () => () => {};
+
+function useHasDemoCookie(): boolean {
+  return React.useSyncExternalStore(
+    emptySubscribe,
+    () => {
+      if (typeof document === "undefined") return false;
+      return document.cookie.split("; ").some((c) => c.startsWith("anzeyl_demo_role="));
+    },
+    () => false
+  );
+}
+
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [loginDropdownOpen, setLoginDropdownOpen] = useState(false);
-  const [user, setUser] = useState<User | null>(() => {
-    if (typeof document !== "undefined") {
-      const hasDemoCookie = document.cookie
-        .split("; ")
-        .some((c) => c.startsWith("anzeyl_demo_role="));
-      if (hasDemoCookie) {
-        return { id: "demo-user", email: "demo@anzeyl.com" } as User;
-      }
-    }
-    return null;
-  });
+  const hasDemoCookie = useHasDemoCookie();
+  const [supabaseUser, setSupabaseUser] = useState<User | null>(null);
 
   useEffect(() => {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
@@ -31,16 +35,20 @@ export const Navbar: React.FC = () => {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data }) => {
       if (data.user) {
-        setUser(data.user);
+        setSupabaseUser(data.user);
       }
     });
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
+      setSupabaseUser(session?.user ?? null);
     });
     return () => subscription.unsubscribe();
   }, []);
+
+  const user = hasDemoCookie
+    ? ({ id: "demo-user", email: "demo@anzeyl.com" } as User)
+    : supabaseUser;
 
   const navLinks = [
     { name: "About", href: "/about" },

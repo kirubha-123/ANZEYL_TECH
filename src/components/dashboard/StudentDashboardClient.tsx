@@ -102,6 +102,40 @@ function getUniqueSubContent(goal: string): string {
   return "Accelerate your career journey with industry-aligned roadmaps, live mentoring, hands-on capstone projects, and certified assessments.";
 }
 
+const emptySubscribe = () => () => {};
+
+function useClientName(serverFallback: string): string {
+  return React.useSyncExternalStore(
+    emptySubscribe,
+    () => {
+      if (typeof window === "undefined") return serverFallback;
+      const stored = localStorage.getItem("anzeyl_user_name");
+      if (
+        stored &&
+        stored !== "Student" &&
+        stored !== "Guest" &&
+        stored !== "ANZEYL Student (Demo Workspace)"
+      ) {
+        return stored;
+      }
+      return serverFallback;
+    },
+    () => serverFallback
+  );
+}
+
+function useClientGoal(serverFallback: string): string {
+  return React.useSyncExternalStore(
+    emptySubscribe,
+    () => {
+      if (typeof window === "undefined") return serverFallback;
+      const storedGoal = localStorage.getItem("anzeyl_user_goal");
+      return storedGoal || serverFallback;
+    },
+    () => serverFallback
+  );
+}
+
 export function StudentDashboardClient({
   studentProfile,
   initialEnrolled,
@@ -187,40 +221,8 @@ export function StudentDashboardClient({
   // Active continue course (first incomplete enrolled course)
   const continueCourse = enrolled.find((c) => !c.isCompleted) || enrolled[0];
 
-  const [displayName] = useState(() => {
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("anzeyl_user_name");
-      if (
-        stored &&
-        stored !== "Student" &&
-        stored !== "Guest" &&
-        stored !== "ANZEYL Student (Demo Workspace)"
-      ) {
-        return stored;
-      }
-    }
-    if (
-      studentProfile.fullName &&
-      studentProfile.fullName !== "Student" &&
-      studentProfile.fullName !== "Guest" &&
-      studentProfile.fullName !== "ANZEYL Student (Demo Workspace)"
-    ) {
-      return studentProfile.fullName;
-    }
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("anzeyl_user_name");
-      if (stored && stored !== "Guest") return stored;
-    }
-    return studentProfile.fullName || "Student";
-  });
-
-  const [displayGoal] = useState(() => {
-    if (typeof window !== "undefined") {
-      const storedGoal = localStorage.getItem("anzeyl_user_goal");
-      if (storedGoal) return storedGoal;
-    }
-    return studentProfile.primaryGoal || "Full-Stack Software Engineering";
-  });
+  const displayName = useClientName(studentProfile.fullName || "Student");
+  const displayGoal = useClientGoal(studentProfile.primaryGoal || "Full-Stack Software Engineering");
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
