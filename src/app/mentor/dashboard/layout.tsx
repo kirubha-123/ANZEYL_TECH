@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { AnzeylLogo } from "@/components/AnzeylLogo";
 import { LogOutIcon, HomeIcon } from "@/components/Icons";
+import { Footer } from "@/components/Footer";
 import { createClient } from "@/lib/supabase/client";
 
 function MentorHeader() {
@@ -82,6 +83,7 @@ export default function MentorLayout({
     <div className="min-h-screen bg-[#f7f5ef] text-[#263746] flex flex-col font-sans">
       <MentorHeader />
       <main className="flex-1">{children}</main>
+      <Footer />
     </div>
   );
 }

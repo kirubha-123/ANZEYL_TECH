@@ -4,6 +4,7 @@ import React, { useState, Suspense } from "react";
 import { usePathname } from "next/navigation";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { AdminHeader } from "@/components/admin/AdminHeader";
+import { Footer } from "@/components/Footer";
 import { XIcon } from "@/components/Icons";
 
 function SidebarFallback() {
@@ -63,10 +64,13 @@ export default function AdminLayout({
           <AdminHeader onToggleSidebar={() => setMobileSidebarOpen(!mobileSidebarOpen)} />
         </Suspense>
 
-        <main className="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-6 lg:p-8">
-          <Suspense fallback={<div className="animate-pulse p-8 bg-[#0f1424] rounded-3xl h-96" />}>
-            {children}
-          </Suspense>
+        <main className="flex-1 overflow-y-auto custom-scrollbar flex flex-col">
+          <div className="flex-1 p-4 sm:p-6 lg:p-8">
+            <Suspense fallback={<div className="animate-pulse p-8 bg-[#0f1424] rounded-3xl h-96" />}>
+              {children}
+            </Suspense>
+          </div>
+          <Footer />
         </main>
       </div>
     </div>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { AuthBrand } from "@/components/auth/AuthBrand";
+import { Footer } from "@/components/Footer";
 
 const GOALS = [
   "Full Stack Development",
@@ -111,8 +112,9 @@ export function StudentRegisterForm() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f7f5ef] px-4 py-12 text-[#263746] sm:px-6 lg:px-8">
-      <div className="mx-auto flex min-h-[calc(100vh-6rem)] max-w-md flex-col justify-center">
+    <div className="min-h-screen bg-[#f7f5ef] text-[#263746] flex flex-col font-sans">
+      <main className="flex-1 px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto flex min-h-[calc(100vh-14rem)] max-w-md flex-col justify-center">
         <AuthBrand />
         <div className="flex items-center justify-center gap-4 mt-4 text-xs font-bold">
           <Link href="/" className="text-[#176b87] hover:underline flex items-center gap-1">
@@ -173,5 +175,7 @@ export function StudentRegisterForm() {
         </div>
       </div>
     </main>
-  );
+    <Footer />
+  </div>
+);
 }

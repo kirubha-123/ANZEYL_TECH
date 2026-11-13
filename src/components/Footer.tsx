@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 1: Brand & Contact Info */}
           <div className="lg:col-span-4 space-y-6">
-            <Link href="/home" className="inline-flex">
+            <Link href="/" className="inline-flex">
               <AnzeylLogo tagline size="md" />
             </Link>
 
@@ -106,8 +106,8 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/courses?category=java" className="hover:text-[#C9A64B] transition-colors">
-                  Java Full Stack
+                <Link href="/courses?category=fullstack" className="hover:text-[#C9A64B] transition-colors">
+                  Full-Stack Web Development
                 </Link>
               </li>
               <li>

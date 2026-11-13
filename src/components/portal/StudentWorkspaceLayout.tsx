@@ -4,6 +4,7 @@ import React, { useState, Suspense } from "react";
 import Link from "next/link";
 import { PortalSidebar } from "@/components/portal/PortalSidebar";
 import { PortalHeader } from "@/components/portal/PortalHeader";
+import { Footer } from "@/components/Footer";
 import { SparklesIcon, XIcon } from "@/components/Icons";
 
 function SidebarFallback() {
@@ -58,10 +59,13 @@ export function StudentWorkspaceLayout({
           <PortalHeader onToggleSidebar={() => setMobileSidebarOpen(!mobileSidebarOpen)} />
         </Suspense>
 
-        <main className="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-6 lg:p-8">
-          <Suspense fallback={<div className="animate-pulse p-8 bg-white border border-[#e5e7eb] rounded-3xl h-96" />}>
-            {children}
-          </Suspense>
+        <main className="flex-1 overflow-y-auto custom-scrollbar flex flex-col">
+          <div className="flex-1 p-4 sm:p-6 lg:p-8">
+            <Suspense fallback={<div className="animate-pulse p-8 bg-white border border-[#e5e7eb] rounded-3xl h-96" />}>
+              {children}
+            </Suspense>
+          </div>
+          <Footer />
         </main>
       </div>
 
