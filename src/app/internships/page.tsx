@@ -377,7 +377,7 @@ export default function InternshipsPage() {
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-400 via-cyan-500 to-indigo-500" />
           
           <div className="max-w-2xl">
-            <h3 className="text-xl font-bold text-white">How the ANZEYL Internship Pipeline Works</h3>
+            <h3 className="text-xl font-bold text-white">How the ANZEYL SOLUTIONS Internship Pipeline Works</h3>
             <p className="text-xs sm:text-sm text-slate-300 mt-1">
               Zero resume filtering based on college brand names. Your engineering benchmark score guarantees your interview.
             </p>

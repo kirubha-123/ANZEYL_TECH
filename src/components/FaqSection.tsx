@@ -8,9 +8,9 @@ export const FaqSection: React.FC = () => {
 
   const faqs = [
     {
-      question: "What is ANZEYL and how does it work?",
+      question: "What is ANZEYL SOLUTIONS and how does it work?",
       answer:
-        "ANZEYL is a next-generation EdTech platform that combines 24/7 AI tutoring, adaptive technical skill assessments, hands-on capstone projects, and merit-based course discounts. Students master high-demand tech skills, prove competency through proctored tests, and connect directly with partner recruiters.",
+        "ANZEYL SOLUTIONS is a Bangalore, Karnataka-based next-generation EdTech platform founded by Kirubhakaran. It combines 24/7 AI tutoring, adaptive technical skill assessments, hands-on capstone projects, and merit-based course discounts to bridge the gap between learning and production software engineering.",
       color: "border-l-rose-500",
     },
     {
@@ -26,7 +26,7 @@ export const FaqSection: React.FC = () => {
       color: "border-l-amber-400",
     },
     {
-      question: "How can colleges and universities partner with ANZEYL?",
+      question: "How can colleges and universities partner with ANZEYL SOLUTIONS?",
       answer:
         "Institutions receive access to a dedicated Campus Skill Dashboard, automated student benchmarking tools, accredited curriculum alignment, and direct career placement pipelines. Interested colleges can request an institutional demo via our 'For Colleges' page.",
       color: "border-l-emerald-400",

@@ -93,17 +93,19 @@ export function AdminSidebar({ onCloseMobile }: { onCloseMobile?: () => void }) 
           <div>
             <div className="flex items-center gap-1.5">
               <span
-                className="font-extrabold text-sm tracking-widest"
-                style={{ color: "#F7F5EF", letterSpacing: "0.18em" }}
+                className="font-black text-sm tracking-widest"
+                style={{ letterSpacing: "0.14em" }}
               >
-                ANZEYL
+                <span className="text-white">ANZ</span>
+                <span className="text-[#66cc00]">E</span>
+                <span className="text-white">YL</span>
               </span>
-              <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-[#C9A64B]/20 text-[#E8D28A] border border-[#C9A64B]/30 uppercase">
+              <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-[#66cc00]/20 text-[#66cc00] border border-[#66cc00]/30 uppercase">
                 Admin
               </span>
             </div>
             <span className="text-[9px] tracking-wider text-[#A7A9AE] font-semibold block uppercase">
-              Management Portal
+              SOLUTIONS · Console
             </span>
           </div>
         </Link>

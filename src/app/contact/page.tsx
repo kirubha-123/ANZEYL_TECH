@@ -243,8 +243,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <strong className="text-white block text-sm font-semibold">General Inquiries:</strong>
-                    <a href="mailto:support@ANZEYLai.com" className="text-cyan-400 hover:underline">
-                      support@ANZEYLai.com
+                    <a href="mailto:support@anzeylsolutions.com" className="text-cyan-400 hover:underline">
+                      support@anzeylsolutions.com
                     </a>
                     <span className="text-slate-400 block text-[11px] mt-0.5">Average response time: &lt; 2 hours</span>
                   </div>
@@ -266,9 +266,9 @@ export default function ContactPage() {
                     <BuildingIcon className="w-4 h-4" />
                   </div>
                   <div>
-                    <strong className="text-white block text-sm font-semibold">Engineering Hub:</strong>
+                    <strong className="text-white block text-sm font-semibold">Company Location:</strong>
                     <span className="text-slate-200">
-                      ANZEYL Tech Park, Outer Ring Road, Bellandur, Bengaluru, Karnataka 560103
+                      ANZEYL SOLUTIONS, Outer Ring Road, Bellandur, Bangalore, Karnataka 560103
                     </span>
                   </div>
                 </div>

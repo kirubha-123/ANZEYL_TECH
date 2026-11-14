@@ -31,9 +31,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const course = getCourseBySlug(slug);
-  if (!course) return { title: "Course Not Found — ANZEYL" };
+  if (!course) return { title: "Course Not Found — ANZEYL SOLUTIONS" };
   return {
-    title: `${course.title} — ANZEYL`,
+    title: `${course.title} — ANZEYL SOLUTIONS`,
     description: course.shortDescription,
   };
 }
@@ -336,7 +336,7 @@ export default async function CourseDetailPage({
               Ready to start {course.title}?
             </h2>
             <p className="text-sm text-white/80 max-w-xl mx-auto">
-              Enrol today and join ANZEYL&apos;s structured learning programme with expert guidance,
+              Enrol today and join ANZEYL SOLUTIONS&apos;s structured learning programme with expert guidance,
               hands-on projects, and both online and offline class options.
             </p>
             <div className="flex items-center justify-center gap-4 flex-wrap">

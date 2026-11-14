@@ -322,7 +322,7 @@ export function StudentDashboardClient({
       <div className="bg-white rounded-2xl border border-[#e5e7eb] p-4 shadow-xs">
         <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#e5e7eb]">
           <span className="text-xs font-bold text-[#176b87] uppercase tracking-wider">
-            Your ANZEYL Learning Journey
+            Your ANZEYL SOLUTIONS Learning Journey
           </span>
           <span className="text-[11px] text-[#64748b]">Structured Industry Pathway</span>
         </div>

@@ -1,27 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
-  <!-- Dark charcoal background -->
-  <rect width="48" height="48" rx="10" fill="#17191D"/>
-  <!-- Geometric AZ monogram with metallic gold -->
-  <!-- A: left diagonal stroke -->
-  <path d="M9 36 L18 12 L22 12 L14 36 Z" fill="#C9A64B"/>
-  <!-- A: right diagonal stroke -->
-  <path d="M18 12 L27 36 L23 36 L15 12 Z" fill="#E8D28A"/>
-  <!-- A: crossbar -->
-  <rect x="12" y="26" width="11" height="3" rx="1" fill="#C9A64B"/>
-  <!-- Z: top bar -->
-  <rect x="27" y="12" width="12" height="3" rx="1" fill="#C9A64B"/>
-  <!-- Z: diagonal -->
-  <path d="M39 12 L27 33 L39 33 L27 15 Z" fill="#E8D28A" opacity="0.9"/>
-  <!-- Z: bottom bar -->
-  <rect x="27" y="33" width="12" height="3" rx="1" fill="#C9A64B"/>
-  <!-- Gold accent line across bottom -->
-  <rect x="9" y="39" width="30" height="1.5" rx="0.75" fill="url(#goldLine)"/>
+  <rect width="48" height="48" rx="10" fill="#000000"/>
   <defs>
-    <linearGradient id="goldLine" x1="9" y1="39" x2="39" y2="39" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#C9A64B" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#E8D28A"/>
-      <stop offset="100%" stop-color="#C9A64B" stop-opacity="0"/>
+    <linearGradient id="azSilver" x1="8" y1="10" x2="42" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="50%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
     </linearGradient>
   </defs>
+  <!-- AZ Monogram with Signature Green Triangle -->
+  <!-- A left wing -->
+  <path d="M7 33 L19 12 L24 12 L12 33 Z" fill="url(#azSilver)"/>
+  <!-- A right inner wing -->
+  <path d="M19 12 L28 26 L23 26 L17 17 Z" fill="url(#azSilver)"/>
+  <!-- Green Triangle Accent in A -->
+  <polygon points="17,21 22,28 14,28" fill="#66CC00"/>
+  <!-- Z top bar -->
+  <polygon points="21,12 41,12 38,16 23,16" fill="url(#azSilver)"/>
+  <!-- Z diagonal -->
+  <polygon points="38,16 26,32 31,32 41,16" fill="url(#azSilver)"/>
+  <!-- Z bottom bar -->
+  <polygon points="21,32 41,32 38,36 17,36" fill="url(#azSilver)"/>
 </svg>
-

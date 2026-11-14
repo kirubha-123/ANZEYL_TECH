@@ -70,7 +70,7 @@ async function fetchData() {
             Personalized <span className="text-gradient-brand">AI Learning Assistant</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-300">
-            Never get stuck again. ANZEYL provides step-by-step code breakdowns, instant practice questions, and real-time study path recommendations.
+            Never get stuck again. ANZEYL SOLUTIONS provides step-by-step code breakdowns, instant practice questions, and real-time study path recommendations.
           </p>
 
           {/* AI Notice Badge */}
@@ -144,7 +144,7 @@ async function fetchData() {
                   <div className="w-3.5 h-3.5 rounded-full bg-rose-500 shadow-md shadow-rose-500/50" />
                   <div className="w-3.5 h-3.5 rounded-full bg-amber-400 shadow-md shadow-amber-400/50" />
                   <div className="w-3.5 h-3.5 rounded-full bg-emerald-400 shadow-md shadow-emerald-400/50" />
-                  <span className="text-xs font-mono text-slate-300 ml-2 font-bold">ANZEYL Assistant v2.4</span>
+                  <span className="text-xs font-mono text-slate-300 ml-2 font-bold">ANZEYL SOLUTIONS Assistant v2.4</span>
                 </div>
                 <span className="px-3 py-1 rounded-full badge-vibrant-emerald text-xs font-bold">
                   Interactive Demo

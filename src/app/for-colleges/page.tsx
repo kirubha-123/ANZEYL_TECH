@@ -17,7 +17,7 @@ export default function ForCollegesPage() {
             Higher Ed & Enterprise Partnership
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-            ANZEYL for <span className="text-gradient-brand">Colleges & Universities</span>
+            ANZEYL SOLUTIONS for <span className="text-gradient-brand">Colleges & Universities</span>
           </h1>
           <p className="text-base text-slate-300">
             Empower your computer science & tech departments with proctored AI skill analytics, automated coding lab evaluations, and direct recruiter matching.

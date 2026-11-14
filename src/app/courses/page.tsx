@@ -186,7 +186,7 @@ export default function CoursesPage() {
             <span>Professional Training Programmes</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-[#17191D] tracking-tight leading-tight">
-            ANZEYL Course{" "}
+            ANZEYL SOLUTIONS Course{" "}
             <span className="text-gradient-brand">Catalogue</span>
           </h1>
           <p className="text-sm text-[#64748b] leading-relaxed max-w-2xl mx-auto">
@@ -253,7 +253,7 @@ export default function CoursesPage() {
         <div className="bg-white border border-[#e5e7eb] rounded-2xl p-8 text-center space-y-4 shadow-sm max-w-3xl mx-auto">
           <h3 className="text-xl font-bold text-[#17191D]">Not sure which course to choose?</h3>
           <p className="text-sm text-[#64748b] max-w-xl mx-auto">
-            Speak to an ANZEYL adviser. We will help you find the right programme for your goals and background.
+            Speak to an ANZEYL SOLUTIONS adviser. We will help you find the right programme for your goals and background.
           </p>
           <Link
             href="/contact"

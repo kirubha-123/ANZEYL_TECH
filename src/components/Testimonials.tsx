@@ -30,7 +30,7 @@ export const Testimonials: React.FC = () => {
       score: "1,200+ Campus Students",
       discount: "Integrated Skill Benchmark",
       quote:
-        "ANZEYL provided our faculty with a standardized, proctored assessment framework. We can track our students' real practical coding progress with total clarity.",
+        "ANZEYL SOLUTIONS provided our faculty with a standardized, proctored assessment framework. We can track our students' real practical coding progress with total clarity.",
       rating: 5,
       accent: "from-rose-500 to-purple-600",
       cardGlow: "card-glow-rose",
@@ -46,7 +46,7 @@ export const Testimonials: React.FC = () => {
       score: "15+ Hires from Platform",
       discount: "Pre-Vetted Talent Pipeline",
       quote:
-        "Instead of filtering through 500 identical resumes, we hire directly from ANZEYL's Platinum assessment tier. The candidate coding quality is consistently top notch.",
+        "Instead of filtering through 500 identical resumes, we hire directly from ANZEYL SOLUTIONS' Platinum assessment tier. The candidate coding quality is consistently top notch.",
       rating: 5,
       accent: "from-amber-400 to-orange-500",
       cardGlow: "card-glow-amber",

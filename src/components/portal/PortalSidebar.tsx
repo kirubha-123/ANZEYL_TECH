@@ -110,13 +110,15 @@ export function PortalSidebar({ onCloseMobile }: PortalSidebarProps) {
           <AnzeylMark className="w-10 h-10 shrink-0" />
           <div>
             <span
-              className="font-extrabold text-sm tracking-widest block"
-              style={{ color: "#17191D", letterSpacing: "0.18em" }}
+              className="font-black text-sm tracking-widest block"
+              style={{ letterSpacing: "0.14em" }}
             >
-              ANZEYL
+              <span className="text-[#17191D]">ANZ</span>
+              <span className="text-[#66cc00]">E</span>
+              <span className="text-[#17191D]">YL</span>
             </span>
-            <span className="text-[9px] tracking-wider font-semibold block uppercase" style={{ color: "#C9A64B" }}>
-              Student Workspace
+            <span className="text-[9px] tracking-wider font-bold block uppercase text-[#64748b]">
+              SOLUTIONS · Student Workspace
             </span>
           </div>
         </Link>
@@ -199,7 +201,7 @@ export function PortalSidebar({ onCloseMobile }: PortalSidebarProps) {
         ) : (
           <div className="flex items-center gap-2 px-2 py-1">
             <div className="w-2 h-2 rounded-full bg-[#C9A64B] animate-pulse" />
-            <span className="text-[11px] font-medium text-[#64748b]">ANZEYL Platform</span>
+            <span className="text-[11px] font-medium text-[#64748b]">ANZEYL SOLUTIONS</span>
           </div>
         )}
       </div>

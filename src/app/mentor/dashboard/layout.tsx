@@ -45,7 +45,7 @@ function MentorHeader() {
       {/* Left: Brand */}
       <Link href="/mentor/dashboard" className="flex items-center">
         <AnzeylLogo tagline={false} size="sm" />
-        <span className="ml-3 text-xs font-bold uppercase tracking-widest text-[#C9A64B] hidden sm:block">
+        <span className="ml-3 text-xs font-bold uppercase tracking-widest text-[#66cc00] hidden sm:block">
           Mentor Portal
         </span>
       </Link>

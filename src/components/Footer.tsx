@@ -35,26 +35,30 @@ export const Footer: React.FC = () => {
             </Link>
 
             <p className="text-sm text-[#A7A9AE] leading-relaxed max-w-sm">
-              ANZEYL bridges the gap between learning and employment with 24/7 AI tutoring, adaptive skill assessments, real projects, and score-based tuition discounts.
+              ANZEYL SOLUTIONS bridges the gap between learning and employment with 24/7 AI tutoring, adaptive skill assessments, real projects, and score-based tuition discounts.
             </p>
 
-            {/* Contact Placeholders */}
-            <div className="space-y-2 text-xs text-[#A7A9AE] pt-2">
+            {/* Founder, Location & Contact Details */}
+            <div className="space-y-2.5 text-xs text-[#A7A9AE] pt-2">
               <p className="flex items-center gap-2">
-                <span className="text-[#A7A9AE]/60">Support:</span>
-                <a href="mailto:support@anzeyl.com" className="text-[#C9A64B] hover:text-[#E8D28A] transition-colors">
-                  support@anzeyl.com
+                <span className="text-[#A7A9AE]/70 font-semibold">Founder:</span>
+                <span className="text-[#F7F5EF] font-bold">Kirubhakaran</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="text-[#A7A9AE]/70 font-semibold">Company Location:</span>
+                <span className="text-[#F7F5EF] font-medium">Bangalore, Karnataka</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="text-[#A7A9AE]/70 font-semibold">Support:</span>
+                <a href="mailto:support@anzeylsolutions.com" className="text-[#66cc00] hover:underline transition-colors">
+                  support@anzeylsolutions.com
                 </a>
               </p>
               <p className="flex items-center gap-2">
-                <span className="text-[#A7A9AE]/60">Partnerships:</span>
-                <a href="mailto:partners@anzeyl.com" className="text-[#E8D28A] hover:text-[#C9A64B] transition-colors">
-                  partners@anzeyl.com
+                <span className="text-[#A7A9AE]/70 font-semibold">Partnerships:</span>
+                <a href="mailto:partners@anzeylsolutions.com" className="text-[#66cc00] hover:underline transition-colors">
+                  partners@anzeylsolutions.com
                 </a>
-              </p>
-              <p className="flex items-center gap-2">
-                <span className="text-[#A7A9AE]/60">Headquarters:</span>
-                <span className="text-[#F7F5EF]">India &amp; Remote Global</span>
               </p>
             </div>
           </div>
@@ -168,7 +172,11 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Legal & Copyright Bar */}
         <div className="pt-8 border-t border-[#C9A64B]/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A7A9AE]">
-          <p>© {currentYear} ANZEYL. All rights reserved.</p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+            <p>© {currentYear} ANZEYL SOLUTIONS. All rights reserved.</p>
+            <span className="hidden sm:inline text-[#A7A9AE]/40">•</span>
+            <p className="text-[#F7F5EF]/80 font-medium">Founder: Kirubhakaran · Bangalore, Karnataka</p>
+          </div>
 
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="hover:text-[#F7F5EF] transition-colors">

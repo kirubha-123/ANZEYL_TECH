@@ -11,7 +11,7 @@ export default function PrivacyPage() {
         <div className="glass-card p-8 rounded-2xl border border-slate-800 text-sm text-slate-300 space-y-4 leading-relaxed">
           <p>Last updated: October 2026</p>
           <p>
-            ANZEYL is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when using our platform.
+            ANZEYL SOLUTIONS (Bangalore, Karnataka) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when using our platform.
           </p>
           <h2 className="text-lg font-bold text-white pt-2">1. Data Collection</h2>
           <p>

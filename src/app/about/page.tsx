@@ -12,6 +12,13 @@ import {
 export default function AboutPage() {
   const leadership = [
     {
+      name: "Kirubhakaran",
+      role: "Founder & Chief Executive Officer",
+      background: "Founder of ANZEYL SOLUTIONS, Bangalore, Karnataka · Pioneering accessible, project-driven engineering mentorship and AI-powered learning.",
+      imageInitials: "KB",
+      color: "from-emerald-400 via-lime-400 to-cyan-500",
+    },
+    {
       name: "Dr. Rohini Sundaram",
       role: "Chief AI Scientist & Academic Dean",
       background: "Ex-Stanford AI Lab, 13+ yrs in deep learning & autonomous agents",
@@ -60,7 +67,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="text-base text-slate-300 leading-relaxed">
-            ANZEYL is a next-generation EdTech platform built to eliminate tutorial paralysis. 
+            ANZEYL SOLUTIONS is a next-generation EdTech platform built to eliminate tutorial paralysis. 
             We pair 24/7 personalized AI tutoring with proctored benchmark assessments, live mentor review, 
             and guaranteed paid internships.
           </p>
@@ -132,7 +139,7 @@ export default function AboutPage() {
             <p className="text-xs sm:text-sm text-slate-400">Led by engineers and researchers from top technology leaders</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {leadership.map((person, idx) => (
               <div
                 key={idx}

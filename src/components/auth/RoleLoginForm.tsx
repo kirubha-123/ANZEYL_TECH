@@ -266,7 +266,7 @@ export function RoleLoginForm({
           </span>
           <h1 className="mt-4 text-2xl font-extrabold">Welcome back</h1>
           <p className="mt-2 text-sm text-[#64748b]">
-            Sign in with your authorized ANZEYL account.
+            Sign in with your authorized ANZEYL SOLUTIONS account.
           </p>
 
           {error && (

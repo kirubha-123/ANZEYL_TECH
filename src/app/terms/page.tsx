@@ -11,7 +11,7 @@ export default function TermsPage() {
         <div className="glass-card p-8 rounded-2xl border border-slate-800 text-sm text-slate-300 space-y-4 leading-relaxed">
           <p>Last updated: October 2026</p>
           <p>
-            Welcome to ANZEYL. By accessing our platform, you agree to comply with these Terms of Service.
+            Welcome to ANZEYL SOLUTIONS (Bangalore, Karnataka). By accessing our platform, you agree to comply with these Terms of Service.
           </p>
           <h2 className="text-lg font-bold text-white pt-2">1. Academic Integrity</h2>
           <p>

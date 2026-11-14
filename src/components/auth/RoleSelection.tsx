@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 const roles = [
   { title: "Student", description: "Learn, practice, assess and build your career.", href: "/student/login", action: "Student login", register: "/student/register" },
   { title: "Mentor", description: "Support learners through approved educator access.", href: "/mentor/login", action: "Mentor login", register: "/mentor/register" },
-  { title: "Admin", description: "Manage ANZEYL operations and learning programs.", href: "/admin/login", action: "Admin login", register: null },
+  { title: "Admin", description: "Manage ANZEYL SOLUTIONS operations and learning programs.", href: "/admin/login", action: "Admin login", register: null },
 ];
 
 export function RoleSelection() {
@@ -22,7 +22,7 @@ export function RoleSelection() {
               <span>← Return to Home Page</span>
             </Link>
             <h1 className="mt-5 text-3xl font-extrabold tracking-tight sm:text-5xl">Choose your learning workspace</h1>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-[#64748b] sm:text-base">Sign in to continue to the right ANZEYL experience.</p>
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-[#64748b] sm:text-base">Sign in to continue to your ANZEYL SOLUTIONS workspace.</p>
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {roles.map((role) => (
@@ -36,7 +36,7 @@ export function RoleSelection() {
           </div>
           <div className="mt-8 text-center">
             <Link href="/" className="text-sm font-semibold text-[#64748b] hover:text-[#176b87] transition-colors">
-              ← Back to ANZEYL Homepage
+              ← Back to ANZEYL SOLUTIONS Homepage
             </Link>
           </div>
         </div>

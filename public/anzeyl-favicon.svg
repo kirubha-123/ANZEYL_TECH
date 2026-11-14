@@ -1,10 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="7" fill="#17191D"/>
-  <path d="M5 24 L11.5 8 L14.5 8 L9 24 Z" fill="#C9A64B"/>
-  <path d="M11.5 8 L18 24 L15 24 L9.5 8 Z" fill="#E8D28A"/>
-  <rect x="7.5" y="17.5" width="8" height="2.5" rx="0.75" fill="#C9A64B"/>
-  <rect x="18" y="8" width="9" height="2.5" rx="0.75" fill="#C9A64B"/>
-  <path d="M27 8 L18 22 L27 22 L18 10.5 Z" fill="#E8D28A" opacity="0.9"/>
-  <rect x="18" y="21.5" width="9" height="2.5" rx="0.75" fill="#C9A64B"/>
+  <rect width="32" height="32" rx="7" fill="#000000"/>
+  <defs>
+    <linearGradient id="favSilver" x1="4" y1="6" x2="28" y2="26" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+  </defs>
+  <path d="M4 23 L13 8 L17 8 L8 23 Z" fill="url(#favSilver)"/>
+  <polygon points="11.5,14 15,19 9.5,19" fill="#66CC00"/>
+  <polygon points="14,8 28,8 26,11 16,11" fill="url(#favSilver)"/>
+  <polygon points="26,11 17,22 21,22 28,11" fill="url(#favSilver)"/>
+  <polygon points="14,22 28,22 26,25 11,25" fill="url(#favSilver)"/>
 </svg>
-

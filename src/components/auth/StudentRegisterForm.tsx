@@ -128,7 +128,7 @@ export function StudentRegisterForm() {
         <div className="human-surface mt-5 rounded-2xl p-7 sm:p-9">
           <span className="badge-vibrant-rainbow inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider">Student registration</span>
           <h1 className="mt-4 text-2xl font-extrabold">Create your account</h1>
-          <p className="mt-2 text-sm text-[#64748b]">Set up your student learning workspace.</p>
+          <p className="mt-2 text-sm text-[#64748b]">Set up your ANZEYL SOLUTIONS student learning workspace.</p>
 
           {error && <div role="alert" className="mt-5 rounded-xl border border-[#d9534f]/30 bg-[#fff0ef] p-3 text-sm text-[#b63d39]">{error}</div>}
           {success && <div role="status" className="mt-5 rounded-xl border border-[#23845b]/30 bg-[#edf8f2] p-3 text-sm text-[#176b50]">{success}</div>}
