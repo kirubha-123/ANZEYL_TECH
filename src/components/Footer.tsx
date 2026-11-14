@@ -99,28 +99,38 @@ export const Footer: React.FC = () => {
             <h4 className="text-sm font-bold text-[#F7F5EF] uppercase tracking-wider">Career Tracks</h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/courses?category=frontend" className="hover:text-[#C9A64B] transition-colors">
-                  Frontend Development
+                <Link href="/courses/full-stack-development" className="hover:text-[#66cc00] transition-colors">
+                  Full Stack Development
                 </Link>
               </li>
               <li>
-                <Link href="/courses?category=fullstack" className="hover:text-[#C9A64B] transition-colors">
-                  Full-Stack Web Development
+                <Link href="/courses/ai-and-machine-learning" className="hover:text-[#66cc00] transition-colors">
+                  AI &amp; Machine Learning
                 </Link>
               </li>
               <li>
-                <Link href="/courses?category=python" className="hover:text-[#C9A64B] transition-colors">
-                  Python &amp; Automation
+                <Link href="/courses/cloud-and-devops" className="hover:text-[#66cc00] transition-colors">
+                  Cloud &amp; DevOps
                 </Link>
               </li>
               <li>
-                <Link href="/courses?category=datascience" className="hover:text-[#C9A64B] transition-colors">
-                  Data Science &amp; ML
+                <Link href="/courses/data-science-and-analytics" className="hover:text-[#66cc00] transition-colors">
+                  Data Science &amp; Analytics
                 </Link>
               </li>
               <li>
-                <Link href="/courses?category=aiml" className="hover:text-[#C9A64B] transition-colors">
-                  AI Engineering
+                <Link href="/courses/cyber-security" className="hover:text-[#66cc00] transition-colors">
+                  Cyber Security
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses/ui-ux-design" className="hover:text-[#66cc00] transition-colors">
+                  UI / UX Design
+                </Link>
+              </li>
+              <li>
+                <Link href="/courses/data-analytics-with-power-bi" className="hover:text-[#66cc00] transition-colors">
+                  Data Analytics (Power BI)
                 </Link>
               </li>
             </ul>
