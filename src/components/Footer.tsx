@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
             <div className="space-y-2.5 text-xs text-[#A7A9AE] pt-2">
               <p className="flex items-center gap-2">
                 <span className="text-[#A7A9AE]/70 font-semibold">Founder:</span>
-                <span className="text-[#F7F5EF] font-bold">Kirubhakaran</span>
+                <span className="text-[#F7F5EF] font-bold">Nagoor Meeran</span>
               </p>
               <p className="flex items-center gap-2">
                 <span className="text-[#A7A9AE]/70 font-semibold">Company Location:</span>
@@ -55,9 +55,9 @@ export const Footer: React.FC = () => {
                 </a>
               </p>
               <p className="flex items-center gap-2">
-                <span className="text-[#A7A9AE]/70 font-semibold">Partnerships:</span>
-                <a href="mailto:partners@anzeylsolutions.com" className="text-[#66cc00] hover:underline transition-colors">
-                  partners@anzeylsolutions.com
+                <span className="text-[#A7A9AE]/70 font-semibold">HR:</span>
+                <a href="mailto:hr@anzeylsolutions.com" className="text-[#66cc00] hover:underline transition-colors">
+                  hr@anzeylsolutions.com
                 </a>
               </p>
             </div>
@@ -175,7 +175,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
             <p>© {currentYear} ANZEYL SOLUTIONS. All rights reserved.</p>
             <span className="hidden sm:inline text-[#A7A9AE]/40">•</span>
-            <p className="text-[#F7F5EF]/80 font-medium">Founder: Kirubhakaran · Bangalore, Karnataka</p>
+            <p className="text-[#F7F5EF]/80 font-medium">Founder: Nagoor Meeran · Bangalore, Karnataka</p>
           </div>
 
           <div className="flex items-center gap-6">

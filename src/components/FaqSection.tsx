@@ -10,7 +10,7 @@ export const FaqSection: React.FC = () => {
     {
       question: "What is ANZEYL SOLUTIONS and how does it work?",
       answer:
-        "ANZEYL SOLUTIONS is a Bangalore, Karnataka-based next-generation EdTech platform founded by Kirubhakaran. It combines 24/7 AI tutoring, adaptive technical skill assessments, hands-on capstone projects, and merit-based course discounts to bridge the gap between learning and production software engineering.",
+        "ANZEYL SOLUTIONS is a Bangalore, Karnataka-based next-generation EdTech platform founded by Nagoor Meeran. It combines 24/7 AI tutoring, adaptive technical skill assessments, hands-on capstone projects, and merit-based course discounts to bridge the gap between learning and production software engineering.",
       color: "border-l-rose-500",
     },
     {

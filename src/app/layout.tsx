@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "ANZEYL SOLUTIONS | Learn with AI, Demonstrate Skills & Build Careers",
   description:
-    "ANZEYL SOLUTIONS is a next-generation EdTech platform featuring 24/7 AI tutoring, proctored adaptive skill assessments, real projects, and score-based tuition discounts. Founded by Kirubhakaran in Bangalore, Karnataka.",
+    "ANZEYL SOLUTIONS is a next-generation EdTech platform featuring 24/7 AI tutoring, proctored adaptive skill assessments, real projects, and score-based tuition discounts. Founded by Nagoor Meeran in Bangalore, Karnataka.",
   icons: {
     icon: "/anzeyl-logo.jpg",
     shortcut: "/anzeyl-logo.jpg",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ANZEYL SOLUTIONS | Learn with AI, Demonstrate Skills & Build Careers",
     description:
-      "ANZEYL SOLUTIONS is a next-generation EdTech platform featuring 24/7 AI tutoring, proctored adaptive skill assessments, real projects, and score-based tuition discounts. Founded by Kirubhakaran in Bangalore, Karnataka.",
+      "ANZEYL SOLUTIONS is a next-generation EdTech platform featuring 24/7 AI tutoring, proctored adaptive skill assessments, real projects, and score-based tuition discounts. Founded by Nagoor Meeran in Bangalore, Karnataka.",
     siteName: "ANZEYL SOLUTIONS",
   },
   twitter: {

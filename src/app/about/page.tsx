@@ -12,10 +12,10 @@ import {
 export default function AboutPage() {
   const leadership = [
     {
-      name: "Kirubhakaran",
+      name: "Nagoor Meeran",
       role: "Founder & Chief Executive Officer",
       background: "Founder of ANZEYL SOLUTIONS, Bangalore, Karnataka · Pioneering accessible, project-driven engineering mentorship and AI-powered learning.",
-      imageInitials: "KB",
+      imageInitials: "NM",
       color: "from-emerald-400 via-lime-400 to-cyan-500",
     },
     {
