@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { dashboardForRole, roleAllowsEntry, type AppRole } from "@/lib/auth/roles";
+import { goalToCourseSlug } from "@/lib/courseData";
 import { AuthBrand } from "@/components/auth/AuthBrand";
 import { Footer } from "@/components/Footer";
 
@@ -155,6 +156,17 @@ export function RoleLoginForm({
     }
 
     // 5. Successful login & verified role: Navigate to designated workspace
+    const normalizedEmail = cleanEmail.toLowerCase();
+    if (typeof window !== "undefined" && normalizedEmail) {
+      localStorage.setItem("anzeyl_user_email", normalizedEmail);
+      const userKey = `anzeyl_enrolled_${normalizedEmail}`;
+      const existing = localStorage.getItem(userKey);
+      if (existing) {
+        localStorage.setItem("anzeyl_student_enrolled_courses", existing);
+      } else {
+        localStorage.removeItem("anzeyl_student_enrolled_courses");
+      }
+    }
     const targetDashboard = dashboardForRole(profile.role);
     router.push(targetDashboard);
     router.refresh();
@@ -200,10 +212,24 @@ export function RoleLoginForm({
     if (typeof window !== "undefined") {
       localStorage.setItem("anzeyl_user_name", userName);
     }
-    if (email.trim()) {
-      document.cookie = `anzeyl_user_email=${encodeURIComponent(email.trim())}; path=/; max-age=86400; SameSite=Lax`;
+    const cleanEmail = email.trim().toLowerCase();
+    if (cleanEmail) {
+      document.cookie = `anzeyl_user_email=${encodeURIComponent(cleanEmail)}; path=/; max-age=86400; SameSite=Lax`;
       if (typeof window !== "undefined") {
-        localStorage.setItem("anzeyl_user_email", email.trim());
+        localStorage.setItem("anzeyl_user_email", cleanEmail);
+
+        // Sync user-scoped enrollment to active session
+        const userKey = `anzeyl_enrolled_${cleanEmail}`;
+        const existing = localStorage.getItem(userKey);
+        if (existing) {
+          localStorage.setItem("anzeyl_student_enrolled_courses", existing);
+        } else {
+          const storedGoal = localStorage.getItem("anzeyl_user_goal") || "Full Stack Development";
+          const goalSlug = goalToCourseSlug(storedGoal);
+          const initial = JSON.stringify([goalSlug]);
+          localStorage.setItem(userKey, initial);
+          localStorage.setItem("anzeyl_student_enrolled_courses", initial);
+        }
       }
     }
 

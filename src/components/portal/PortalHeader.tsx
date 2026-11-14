@@ -150,6 +150,7 @@ export function PortalHeader({ onToggleSidebar }: PortalHeaderProps) {
       localStorage.removeItem("anzeyl_user_goal");
       localStorage.removeItem("anzeyl_user_phone");
       localStorage.removeItem("anzeyl_demo_role");
+      localStorage.removeItem("anzeyl_student_enrolled_courses");
     }
 
     // 3. Reset local user state

@@ -15,6 +15,7 @@ import {
   ClockIcon,
   CodeIcon,
 } from "@/components/Icons";
+import { goalToCourseSlug } from "@/lib/courseData";
 
 export interface EnrolledCourseData {
   id: string;
@@ -137,17 +138,33 @@ function useClientGoal(serverFallback: string): string {
 }
 
 const EMPTY_SLUGS: string[] = [];
-let cachedRawSlugs: string | null = null;
+let cachedUserKey: string | null = null;
+let cachedRawValue: string | null = null;
 let cachedParsedSlugs: string[] = EMPTY_SLUGS;
 
-function getCachedEnrolledSlugs(): string[] {
-  if (typeof window === "undefined") return EMPTY_SLUGS;
+function getCachedUserEnrolledSlugs(
+  userKey: string,
+  defaultGoalSlug: string,
+  isGuest: boolean
+): string[] {
+  if (typeof window === "undefined" || isGuest) return EMPTY_SLUGS;
   try {
-    const raw = localStorage.getItem("anzeyl_student_enrolled_courses");
-    if (raw === cachedRawSlugs) {
+    let raw = localStorage.getItem(userKey);
+    // If this specific user has no enrollment recorded yet, initialize with ONLY their domain
+    if (!raw && userKey !== "anzeyl_enrolled_guest") {
+      const initial = JSON.stringify([defaultGoalSlug]);
+      localStorage.setItem(userKey, initial);
+      localStorage.setItem("anzeyl_student_enrolled_courses", initial);
+      raw = initial;
+    }
+
+    if (raw === cachedRawValue && userKey === cachedUserKey) {
       return cachedParsedSlugs;
     }
-    cachedRawSlugs = raw;
+
+    cachedUserKey = userKey;
+    cachedRawValue = raw;
+
     if (raw) {
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed) && parsed.length > 0) {
@@ -155,19 +172,11 @@ function getCachedEnrolledSlugs(): string[] {
         return cachedParsedSlugs;
       }
     }
-    cachedParsedSlugs = EMPTY_SLUGS;
+    cachedParsedSlugs = [defaultGoalSlug];
     return cachedParsedSlugs;
   } catch {
-    return EMPTY_SLUGS;
+    return [defaultGoalSlug];
   }
-}
-
-function useEnrolledSlugs(): string[] {
-  return React.useSyncExternalStore(
-    emptySubscribe,
-    getCachedEnrolledSlugs,
-    () => EMPTY_SLUGS
-  );
 }
 
 export function StudentDashboardClient({
@@ -178,45 +187,94 @@ export function StudentDashboardClient({
 }: StudentDashboardProps) {
   const isGuest = Boolean(studentProfile.isGuest || studentProfile.role === "guest");
 
-  const enrolledSlugs = useEnrolledSlugs();
+  const userEmail = studentProfile.email ? studentProfile.email.trim().toLowerCase() : "";
+  const userKey = userEmail ? `anzeyl_enrolled_${userEmail}` : "anzeyl_enrolled_guest";
+  const defaultGoalSlug = useMemo(
+    () => goalToCourseSlug(studentProfile.primaryGoal),
+    [studentProfile.primaryGoal]
+  );
+
+  const getSnapshot = React.useCallback(() => {
+    return getCachedUserEnrolledSlugs(userKey, defaultGoalSlug, isGuest);
+  }, [userKey, defaultGoalSlug, isGuest]);
+
+  const enrolledSlugs = React.useSyncExternalStore(
+    emptySubscribe,
+    getSnapshot,
+    () => EMPTY_SLUGS
+  );
+
+  // Combine initial courses to full catalog
+  const allCourses = useMemo(() => {
+    const list: AvailableCourseData[] = [...initialAvailable];
+    for (const c of initialEnrolled) {
+      if (!list.some((item) => item.slug === c.slug || item.id === c.id)) {
+        list.push({
+          id: c.id,
+          slug: c.slug,
+          title: c.title,
+          description: c.description,
+          instructorName: c.instructorName,
+          category: c.category,
+          difficulty: c.difficulty,
+          totalLessons: c.totalLessons,
+          priceInCents: 0,
+        });
+      }
+    }
+    return list;
+  }, [initialAvailable, initialEnrolled]);
 
   const enrolled = useMemo<EnrolledCourseData[]>(() => {
-    if (enrolledSlugs.length === 0) return initialEnrolled;
-    const storedSet = new Set(enrolledSlugs);
-    const newlyEnrolled = initialAvailable.filter(
-      (c) => storedSet.has(c.id) || storedSet.has(c.slug)
-    );
-    if (newlyEnrolled.length === 0) return initialEnrolled;
-    return [
-      ...initialEnrolled,
-      ...newlyEnrolled.map((c) => ({
-        id: c.id,
-        slug: c.slug,
-        title: c.title,
-        description: c.description,
-        instructorName: c.instructorName,
-        category: c.category,
-        difficulty: c.difficulty,
-        totalLessons: c.totalLessons,
-        completedLessons: 0,
-        progressPercent: 0,
-        isCompleted: false,
-        nextLessonTitle: "Lesson 1",
-        nextLessonMinutes: null,
-      })),
-    ];
-  }, [initialEnrolled, initialAvailable, enrolledSlugs]);
+    if (isGuest) return [];
+
+    const targetSlugs = new Set<string>();
+    if (enrolledSlugs.length > 0) {
+      enrolledSlugs.forEach((s) => targetSlugs.add(s));
+    } else if (initialEnrolled.length > 0) {
+      initialEnrolled.forEach((c) => {
+        targetSlugs.add(c.slug);
+        targetSlugs.add(c.id);
+      });
+    } else {
+      targetSlugs.add(defaultGoalSlug);
+    }
+
+    const result: EnrolledCourseData[] = [];
+    for (const c of allCourses) {
+      if (targetSlugs.has(c.slug) || targetSlugs.has(c.id)) {
+        const existing = initialEnrolled.find((e) => e.slug === c.slug || e.id === c.id);
+        result.push(
+          existing || {
+            id: c.id,
+            slug: c.slug,
+            title: c.title,
+            description: c.description,
+            instructorName: c.instructorName,
+            category: c.category,
+            difficulty: c.difficulty,
+            totalLessons: c.totalLessons,
+            completedLessons: 0,
+            progressPercent: 0,
+            isCompleted: false,
+            nextLessonTitle: "Module 1: Orientation & Foundations",
+            nextLessonMinutes: 45,
+          }
+        );
+      }
+    }
+    return result;
+  }, [isGuest, enrolledSlugs, initialEnrolled, allCourses, defaultGoalSlug]);
 
   const available = useMemo<AvailableCourseData[]>(() => {
-    if (enrolledSlugs.length === 0) return initialAvailable;
-    const storedSet = new Set(enrolledSlugs);
-    return initialAvailable.filter(
-      (c) => !storedSet.has(c.id) && !storedSet.has(c.slug)
-    );
-  }, [initialAvailable, enrolledSlugs]);
+    if (isGuest) return allCourses;
+    const enrolledSet = new Set(enrolled.map((c) => c.slug));
+    enrolled.forEach((c) => enrolledSet.add(c.id));
+    return allCourses.filter((c) => !enrolledSet.has(c.slug) && !enrolledSet.has(c.id));
+  }, [isGuest, allCourses, enrolled]);
 
   const [activeCourseTab, setActiveCourseTab] = useState<"enrolled" | "available">(
-    isGuest || initialEnrolled.length === 0 ? "available" : "enrolled"
+    isGuest ? "available" : "enrolled"
   );
 
   // Calculated Real Statistics

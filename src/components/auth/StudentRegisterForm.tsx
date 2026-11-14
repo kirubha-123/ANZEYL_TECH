@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { goalToCourseSlug } from "@/lib/courseData";
 import { AuthBrand } from "@/components/auth/AuthBrand";
 import { Footer } from "@/components/Footer";
 
@@ -55,14 +56,20 @@ export function StudentRegisterForm() {
 
     setLoading(true);
     const trimmedName = fullName.trim();
+    const cleanEmail = email.trim().toLowerCase();
+    const goalSlug = goalToCourseSlug(primaryGoal);
+
     if (typeof window !== "undefined") {
       localStorage.setItem("anzeyl_user_name", trimmedName);
-      localStorage.setItem("anzeyl_user_email", email.trim());
+      localStorage.setItem("anzeyl_user_email", cleanEmail);
       localStorage.setItem("anzeyl_user_phone", cleanPhone);
       localStorage.setItem("anzeyl_user_goal", primaryGoal);
+      // Explicitly store ONLY this user's chosen domain track
+      localStorage.setItem(`anzeyl_enrolled_${cleanEmail}`, JSON.stringify([goalSlug]));
+      localStorage.setItem("anzeyl_student_enrolled_courses", JSON.stringify([goalSlug]));
     }
     document.cookie = `anzeyl_user_name=${encodeURIComponent(trimmedName)}; path=/; max-age=86400; SameSite=Lax`;
-    document.cookie = `anzeyl_user_email=${encodeURIComponent(email.trim())}; path=/; max-age=86400; SameSite=Lax`;
+    document.cookie = `anzeyl_user_email=${encodeURIComponent(cleanEmail)}; path=/; max-age=86400; SameSite=Lax`;
     document.cookie = `anzeyl_user_goal=${encodeURIComponent(primaryGoal)}; path=/; max-age=86400; SameSite=Lax`;
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";

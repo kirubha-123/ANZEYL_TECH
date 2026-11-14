@@ -46,7 +46,9 @@ let cachedParsedSlugs: string[] = EMPTY_SLUGS;
 function getCachedEnrolledSlugs(): string[] {
   if (typeof window === "undefined") return EMPTY_SLUGS;
   try {
-    const raw = localStorage.getItem(LOCAL_ENROLLMENT_KEY);
+    const email = (localStorage.getItem("anzeyl_user_email") || "").trim().toLowerCase();
+    const userKey = email ? `anzeyl_enrolled_${email}` : LOCAL_ENROLLMENT_KEY;
+    const raw = localStorage.getItem(userKey) || localStorage.getItem(LOCAL_ENROLLMENT_KEY);
     if (raw === cachedRawSlugs) {
       return cachedParsedSlugs;
     }

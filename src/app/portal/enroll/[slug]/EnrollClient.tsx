@@ -45,7 +45,9 @@ export default function EnrollClient({ course }: EnrollClientProps) {
 
   const [isEnrolled, setIsEnrolled] = useState(() => {
     if (typeof window !== "undefined") {
-      const savedEnrolled = localStorage.getItem("anzeyl_student_enrolled_courses");
+      const email = (localStorage.getItem("anzeyl_user_email") || "").trim().toLowerCase();
+      const userKey = email ? `anzeyl_enrolled_${email}` : "anzeyl_student_enrolled_courses";
+      const savedEnrolled = localStorage.getItem(userKey) || localStorage.getItem("anzeyl_student_enrolled_courses");
       if (savedEnrolled) {
         try {
           const list = JSON.parse(savedEnrolled);
@@ -74,13 +76,15 @@ export default function EnrollClient({ course }: EnrollClientProps) {
     setIsSubmitting(true);
 
     if (typeof window !== "undefined") {
+      const cleanEmail = email.trim().toLowerCase();
       // Save student details
       localStorage.setItem("anzeyl_user_name", fullName.trim());
-      localStorage.setItem("anzeyl_user_email", email.trim());
+      localStorage.setItem("anzeyl_user_email", cleanEmail);
       if (phone.trim()) localStorage.setItem("anzeyl_user_phone", phone.trim());
 
-      // Save course enrollment
-      const saved = localStorage.getItem("anzeyl_student_enrolled_courses");
+      // Save user-scoped course enrollment
+      const userKey = `anzeyl_enrolled_${cleanEmail}`;
+      const saved = localStorage.getItem(userKey) || localStorage.getItem("anzeyl_student_enrolled_courses");
       let enrolledList: string[] = [];
       if (saved) {
         try {
@@ -95,11 +99,13 @@ export default function EnrollClient({ course }: EnrollClientProps) {
       if (!enrolledList.includes(course.id)) {
         enrolledList.push(course.id);
       }
+      localStorage.setItem(userKey, JSON.stringify(enrolledList));
       localStorage.setItem("anzeyl_student_enrolled_courses", JSON.stringify(enrolledList));
 
       // Ensure demo student session cookie is set
       document.cookie = "anzeyl_demo_role=student; path=/; max-age=86400; SameSite=Lax";
       document.cookie = `anzeyl_user_name=${encodeURIComponent(fullName.trim())}; path=/; max-age=86400; SameSite=Lax`;
+      document.cookie = `anzeyl_user_email=${encodeURIComponent(cleanEmail)}; path=/; max-age=86400; SameSite=Lax`;
     }
 
     setTimeout(() => {

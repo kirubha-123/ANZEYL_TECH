@@ -871,3 +871,19 @@ export function getCourseBySlug(slug: string): AnzeylCourse | undefined {
 /** All unique categories */
 export const COURSE_CATEGORIES = ["All", ...Array.from(new Set(ANZEYL_COURSES.map((c) => c.category)))];
 
+/**
+ * Map a learning goal or student domain to its matching ANZEYL course slug.
+ */
+export function goalToCourseSlug(goal?: string | null): string {
+  if (!goal) return "full-stack-development";
+  const g = goal.toLowerCase();
+  if (g.includes("cyber") || g.includes("security")) return "cyber-security";
+  if (g.includes("ai") || g.includes("machine") || g.includes("ml")) return "ai-and-machine-learning";
+  if (g.includes("power") || g.includes("bi")) return "data-analytics-with-power-bi";
+  if (g.includes("data") && (g.includes("science") || g.includes("analytics"))) return "data-science-and-analytics";
+  if (g.includes("cloud") || g.includes("devops") || g.includes("aws")) return "cloud-and-devops";
+  if (g.includes("ui") || g.includes("ux") || g.includes("design")) return "ui-ux-design";
+  if (g.includes("marketing") || g.includes("digital")) return "digital-marketing";
+  return "full-stack-development";
+}
+

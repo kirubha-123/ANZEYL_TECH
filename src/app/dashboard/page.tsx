@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { dashboardForRole } from "@/lib/auth/roles";
+import { goalToCourseSlug } from "@/lib/courseData";
 import {
   StudentDashboardClient,
   type EnrolledCourseData,
@@ -144,8 +145,10 @@ async function DashboardContent() {
     const rawUserEmail = cookieStore.get("anzeyl_user_email")?.value;
     const userEmail = rawUserEmail ? decodeURIComponent(rawUserEmail) : "student@anzeyl.com";
     const rawUserGoal = cookieStore.get("anzeyl_user_goal")?.value;
-    const userGoal = rawUserGoal ? decodeURIComponent(rawUserGoal) : "Full-Stack Software Engineering";
+    const userGoal = rawUserGoal ? decodeURIComponent(rawUserGoal) : "Full Stack Development";
+    const goalSlug = goalToCourseSlug(userGoal);
 
+    const isGuest = !isDemoStudent;
     const studentProfile = isDemoStudent
       ? {
           id: "demo-student-id",
@@ -161,27 +164,51 @@ async function DashboardContent() {
           fullName: "Guest",
           email: "",
           role: "guest",
-          primaryGoal: "Full-Stack Software Engineering",
+          primaryGoal: "Full Stack Development",
           phone: null,
           isGuest: true,
         };
 
-    const availableCourses: AvailableCourseData[] = FALLBACK_COURSES.map((c) => ({
-      id: c.id,
-      slug: c.slug,
-      title: c.title,
-      description: c.description ?? "",
-      instructorName: c.instructor_name ?? "ANZEYL Faculty",
-      category: c.category ?? "General",
-      difficulty: c.difficulty ?? "intermediate",
-      totalLessons: c.fallbackLessonsCount ?? 24,
-      priceInCents: c.price_in_cents,
-    }));
+    const enrolledCourses: EnrolledCourseData[] = [];
+    const availableCourses: AvailableCourseData[] = [];
+
+    for (const c of FALLBACK_COURSES) {
+      const isEnrolledTrack = !isGuest && (c.slug === goalSlug || c.id === goalSlug);
+      if (isEnrolledTrack) {
+        enrolledCourses.push({
+          id: c.id,
+          slug: c.slug,
+          title: c.title,
+          description: c.description ?? "",
+          instructorName: c.instructor_name ?? "ANZEYL Faculty",
+          category: c.category ?? "General",
+          difficulty: c.difficulty ?? "intermediate",
+          totalLessons: c.fallbackLessonsCount ?? 24,
+          completedLessons: 0,
+          progressPercent: 0,
+          isCompleted: false,
+          nextLessonTitle: "Module 1: Orientation & Foundations",
+          nextLessonMinutes: 45,
+        });
+      } else {
+        availableCourses.push({
+          id: c.id,
+          slug: c.slug,
+          title: c.title,
+          description: c.description ?? "",
+          instructorName: c.instructor_name ?? "ANZEYL Faculty",
+          category: c.category ?? "General",
+          difficulty: c.difficulty ?? "intermediate",
+          totalLessons: c.fallbackLessonsCount ?? 24,
+          priceInCents: c.price_in_cents,
+        });
+      }
+    }
 
     return (
       <StudentDashboardClient
         studentProfile={studentProfile}
-        initialEnrolled={[]}
+        initialEnrolled={enrolledCourses}
         initialAvailable={availableCourses}
         activity={[]}
       />
@@ -237,6 +264,12 @@ async function DashboardContent() {
 
   const enrollments = rawEnrollments ?? [];
   const enrolledIds = new Set(enrollments.map((e) => e.course_id));
+
+  // If user is logged in with no DB enrollments yet, automatically enroll their chosen primary goal domain
+  if (user && enrolledIds.size === 0) {
+    const userGoalSlug = goalToCourseSlug(profile?.primary_goal);
+    enrolledIds.add(userGoalSlug);
+  }
 
   // 4. Fetch lessons for published courses
   const courseIds = hasDbCourses ? courses.map((c) => c.id) : [];
