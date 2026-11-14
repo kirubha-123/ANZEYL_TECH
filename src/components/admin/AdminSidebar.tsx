@@ -89,7 +89,7 @@ export function AdminSidebar({ onCloseMobile }: { onCloseMobile?: () => void }) 
       {/* Brand Header */}
       <div className="h-20 px-6 flex items-center border-b border-[#C9A64B]/20">
         <Link href="/home" className="flex items-center gap-3 group">
-          <AnzeylMark className="w-10 h-10 shrink-0" />
+          <AnzeylMark className="w-14 h-9 shrink-0" />
           <div>
             <div className="flex items-center gap-1.5">
               <span

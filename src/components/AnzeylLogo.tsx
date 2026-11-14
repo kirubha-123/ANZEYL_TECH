@@ -5,16 +5,16 @@ import Image from "next/image";
  * ANZEYL mark — ONLY the geometric AZ monogram with the green triangle.
  * Use wherever a compact icon-sized logo is needed.
  */
-export function AnzeylMark({ className = "w-11 h-10" }: { className?: string }) {
+export function AnzeylMark({ className = "w-14 h-9 shrink-0" }: { className?: string }) {
   return (
     <span
-      className={`inline-flex items-center justify-center overflow-hidden rounded-xl bg-black border border-white/10 shadow-sm p-1.5 ${className}`}
+      className={`inline-flex items-center justify-center overflow-hidden rounded-xl bg-black border border-white/10 shadow-sm px-1.5 py-1 ${className}`}
     >
       <Image
-        src="/anzeyl-logo.jpg"
-        alt="AZ"
+        src="/anzeyl-az-logo.png"
+        alt="AZ Logo"
         width={100}
-        height={48}
+        height={46}
         className="w-full h-full object-contain"
         priority
       />
@@ -34,21 +34,21 @@ export function AnzeylLogo({
   size?: "sm" | "md" | "lg";
 }) {
   const sizeMap = {
-    sm: { imgW: 48, imgH: 26, text: "text-base", sub: "text-[9px]" },
-    md: { imgW: 58, imgH: 32, text: "text-lg", sub: "text-[10px]" },
-    lg: { imgW: 76, imgH: 40, text: "text-2xl", sub: "text-xs" },
+    sm: { imgW: 56, imgH: 28, text: "text-base", sub: "text-[9px]" },
+    md: { imgW: 68, imgH: 34, text: "text-xl", sub: "text-[10px]" },
+    lg: { imgW: 84, imgH: 42, text: "text-2xl", sub: "text-xs" },
   };
   const s = sizeMap[size];
 
   return (
-    <span className="inline-flex items-center gap-2.5">
+    <span className="inline-flex items-center gap-3">
       {/* Sleek AZ brand mark container displaying ONLY the AZ mark */}
       <span
-        className="inline-flex shrink-0 items-center justify-center overflow-hidden rounded-xl bg-black border border-white/10 shadow-sm px-1.5 py-1"
+        className="inline-flex shrink-0 items-center justify-center overflow-hidden rounded-xl bg-black border border-white/10 shadow-sm px-2 py-1"
         style={{ width: s.imgW, height: s.imgH }}
       >
         <Image
-          src="/anzeyl-logo.jpg"
+          src="/anzeyl-az-logo.png"
           alt="AZ Logo"
           width={s.imgW * 2}
           height={s.imgH * 2}
@@ -89,8 +89,8 @@ export function AnzeylLogo({
  * Full centered stacked lockup — ONLY the AZ logo mark badge above wordmark.
  * Ideal for auth pages, login screens, and hero highlights.
  */
-export function AnzeylLogoCentered({ size = 160 }: { size?: number }) {
-  const aspectHeight = Math.round(size * (127 / 264));
+export function AnzeylLogoCentered({ size = 180 }: { size?: number }) {
+  const aspectHeight = Math.round(size * (121 / 262));
 
   return (
     <span className="inline-flex flex-col items-center gap-2.5">
@@ -99,10 +99,10 @@ export function AnzeylLogoCentered({ size = 160 }: { size?: number }) {
         style={{ width: size, height: aspectHeight + 16 }}
       >
         <Image
-          src="/anzeyl-logo.jpg"
+          src="/anzeyl-az-logo.png"
           alt="AZ Logo"
-          width={264}
-          height={127}
+          width={262}
+          height={121}
           className="w-full h-full object-contain"
           priority
         />

@@ -107,7 +107,7 @@ export function PortalSidebar({ onCloseMobile }: PortalSidebarProps) {
       {/* Brand Header */}
       <div className="h-20 px-6 flex items-center justify-between border-b border-[#e5e7eb] bg-[#f7f5ef]">
         <Link href="/dashboard" className="flex items-center gap-3 group">
-          <AnzeylMark className="w-10 h-10 shrink-0" />
+          <AnzeylMark className="w-14 h-9 shrink-0" />
           <div>
             <span
               className="font-black text-sm tracking-widest block"

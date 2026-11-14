@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   description:
     "ANZEYL SOLUTIONS is a next-generation EdTech platform featuring 24/7 AI tutoring, proctored adaptive skill assessments, real projects, and score-based tuition discounts. Founded by Nagoor Meeran in Bangalore, Karnataka.",
   icons: {
-    icon: "/anzeyl-logo.jpg",
-    shortcut: "/anzeyl-logo.jpg",
-    apple: "/anzeyl-logo.jpg",
+    icon: "/anzeyl-az-logo.png",
+    shortcut: "/anzeyl-az-logo.png",
+    apple: "/anzeyl-az-logo.png",
   },
   openGraph: {
     title: "ANZEYL SOLUTIONS | Learn with AI, Demonstrate Skills & Build Careers",
