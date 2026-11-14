@@ -49,15 +49,9 @@ export const Footer: React.FC = () => {
                 <span className="text-[#F7F5EF] font-medium">Bangalore, Karnataka</span>
               </p>
               <p className="flex items-center gap-2">
-                <span className="text-[#A7A9AE]/70 font-semibold">Support:</span>
-                <a href="mailto:support@anzeylsolutions.com" className="text-[#66cc00] hover:underline transition-colors">
-                  support@anzeylsolutions.com
-                </a>
-              </p>
-              <p className="flex items-center gap-2">
-                <span className="text-[#A7A9AE]/70 font-semibold">HR:</span>
-                <a href="mailto:hr@anzeylsolutions.com" className="text-[#66cc00] hover:underline transition-colors">
-                  hr@anzeylsolutions.com
+                <span className="text-[#A7A9AE]/70 font-semibold">Email:</span>
+                <a href="mailto:anzeylsolutions@gmail.com" className="text-[#66cc00] hover:underline transition-colors">
+                  anzeylsolutions@gmail.com
                 </a>
               </p>
             </div>

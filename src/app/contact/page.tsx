@@ -243,8 +243,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <strong className="text-white block text-sm font-semibold">General Inquiries:</strong>
-                    <a href="mailto:support@anzeylsolutions.com" className="text-cyan-400 hover:underline">
-                      support@anzeylsolutions.com
+                    <a href="mailto:anzeylsolutions@gmail.com" className="text-cyan-400 hover:underline">
+                      anzeylsolutions@gmail.com
                     </a>
                     <span className="text-slate-400 block text-[11px] mt-0.5">Average response time: &lt; 2 hours</span>
                   </div>
