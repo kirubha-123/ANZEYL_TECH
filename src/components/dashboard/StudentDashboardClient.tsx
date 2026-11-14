@@ -103,7 +103,7 @@ function getUniqueSubContent(goal: string): string {
   return "Accelerate your career journey with industry-aligned roadmaps, live mentoring, hands-on capstone projects, and certified assessments.";
 }
 
-const emptySubscribe = () => () => {};
+const emptySubscribe = () => () => { };
 
 function useClientName(serverFallback: string): string {
   return React.useSyncExternalStore(
@@ -304,8 +304,8 @@ export function StudentDashboardClient({
             <div className="flex items-center gap-2">
               <span
                 className={`text-xs font-bold px-3 py-1 rounded-full border ${isGuest
-                    ? "bg-amber-500/10 text-amber-800 border-amber-500/30"
-                    : "bg-[#dcefea] text-[#176b87] border-[#b9d8d1]"
+                  ? "bg-amber-500/10 text-amber-800 border-amber-500/30"
+                  : "bg-[#dcefea] text-[#176b87] border-[#b9d8d1]"
                   }`}
               >
                 {isGuest ? "Guest Preview Mode" : "Active Student Account"}
@@ -624,8 +624,8 @@ export function StudentDashboardClient({
               suppressHydrationWarning
               onClick={() => setActiveCourseTab("enrolled")}
               className={`text-sm font-bold pb-2 transition-all border-b-2 -mb-[13px] ${activeCourseTab === "enrolled"
-                  ? "border-[#176b87] text-[#176b87]"
-                  : "border-transparent text-[#64748b] hover:text-[#263746]"
+                ? "border-[#176b87] text-[#176b87]"
+                : "border-transparent text-[#64748b] hover:text-[#263746]"
                 }`}
             >
               Enrolled Courses ({enrolledCount})
@@ -635,8 +635,8 @@ export function StudentDashboardClient({
               suppressHydrationWarning
               onClick={() => setActiveCourseTab("available")}
               className={`text-sm font-bold pb-2 transition-all border-b-2 -mb-[13px] ${activeCourseTab === "available"
-                  ? "border-[#176b87] text-[#176b87]"
-                  : "border-transparent text-[#64748b] hover:text-[#263746]"
+                ? "border-[#176b87] text-[#176b87]"
+                : "border-transparent text-[#64748b] hover:text-[#263746]"
                 }`}
             >
               Available Courses ({available.length})

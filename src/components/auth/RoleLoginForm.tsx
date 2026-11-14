@@ -242,144 +242,141 @@ export function RoleLoginForm({
     <div className="min-h-screen bg-[#f7f5ef] text-[#263746] flex flex-col font-sans">
       <main className="flex-1 px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto flex min-h-[calc(100vh-14rem)] max-w-md flex-col justify-center">
-        <AuthBrand />
-        <div className="flex items-center justify-center gap-4 mt-4 text-xs font-bold">
-          <Link href="/" className="text-[#176b87] hover:underline flex items-center gap-1">
-            <span>← Return to Home</span>
-          </Link>
-          <span className="text-[#64748b]">•</span>
-          <Link href="/login" className="text-[#64748b] hover:text-[#17191D] hover:underline">
-            Choose workspace
-          </Link>
-        </div>
-        <div className="human-surface mt-5 rounded-2xl p-7 sm:p-9">
-          {/* Workspace Role Switcher */}
-          <div className="grid grid-cols-3 gap-1 p-1 bg-[#f7f5ef] border border-[#e5e7eb] rounded-xl mb-5 text-xs font-bold text-center">
-            <Link
-              href="/student/login"
-              className={`py-2 rounded-lg transition-all ${
-                entry === "student"
-                  ? "bg-white text-[#176b87] shadow-xs"
-                  : "text-[#64748b] hover:text-[#17191D]"
-              }`}
-            >
-              Student
+          <AuthBrand />
+          <div className="flex items-center justify-center gap-4 mt-4 text-xs font-bold">
+            <Link href="/" className="text-[#176b87] hover:underline flex items-center gap-1">
+              <span>← Return to Home</span>
             </Link>
-            <Link
-              href="/mentor/login"
-              className={`py-2 rounded-lg transition-all ${
-                entry === "mentor"
-                  ? "bg-white text-[#176b87] shadow-xs"
-                  : "text-[#64748b] hover:text-[#17191D]"
-              }`}
-            >
-              Mentor
-            </Link>
-            <Link
-              href="/admin/login"
-              className={`py-2 rounded-lg transition-all ${
-                entry === "admin"
-                  ? "bg-white text-[#176b87] shadow-xs"
-                  : "text-[#64748b] hover:text-[#17191D]"
-              }`}
-            >
-              Admin
+            <span className="text-[#64748b]">•</span>
+            <Link href="/login" className="text-[#64748b] hover:text-[#17191D] hover:underline">
+              Choose workspace
             </Link>
           </div>
-
-          <span className="badge-vibrant-rainbow inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider">
-            {title}
-          </span>
-          <h1 className="mt-4 text-2xl font-extrabold">Welcome back</h1>
-          <p className="mt-2 text-sm text-[#64748b]">
-            Sign in with your authorized ANZEYL SOLUTIONS account.
-          </p>
-
-          {error && (
-            <div
-              role="alert"
-              className="mt-5 rounded-xl border border-[#d9534f]/30 bg-[#fff0ef] p-3.5 text-xs font-medium leading-relaxed text-[#b63d39]"
-            >
-              {error}
+          <div className="human-surface mt-5 rounded-2xl p-7 sm:p-9">
+            {/* Workspace Role Switcher */}
+            <div className="grid grid-cols-3 gap-1 p-1 bg-[#f7f5ef] border border-[#e5e7eb] rounded-xl mb-5 text-xs font-bold text-center">
+              <Link
+                href="/student/login"
+                className={`py-2 rounded-lg transition-all ${entry === "student"
+                    ? "bg-white text-[#176b87] shadow-xs"
+                    : "text-[#64748b] hover:text-[#17191D]"
+                  }`}
+              >
+                Student
+              </Link>
+              <Link
+                href="/mentor/login"
+                className={`py-2 rounded-lg transition-all ${entry === "mentor"
+                    ? "bg-white text-[#176b87] shadow-xs"
+                    : "text-[#64748b] hover:text-[#17191D]"
+                  }`}
+              >
+                Mentor
+              </Link>
+              <Link
+                href="/admin/login"
+                className={`py-2 rounded-lg transition-all ${entry === "admin"
+                    ? "bg-white text-[#176b87] shadow-xs"
+                    : "text-[#64748b] hover:text-[#17191D]"
+                  }`}
+              >
+                Admin
+              </Link>
             </div>
-          )}
 
-          {success && (
-            <div
-              role="status"
-              className="mt-5 rounded-xl border border-[#23845b]/30 bg-[#edf8f2] p-3 text-sm text-[#176b50]"
-            >
-              {success}
-            </div>
-          )}
+            <span className="badge-vibrant-rainbow inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider">
+              {title}
+            </span>
+            <h1 className="mt-4 text-2xl font-extrabold">Welcome back</h1>
+            <p className="mt-2 text-sm text-[#64748b]">
+              Sign in with your authorized ANZEYL SOLUTIONS account.
+            </p>
 
-          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-            <label className="block text-sm font-bold">
-              Email
-              <input
-                required
-                type="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                className="human-input mt-1.5 w-full rounded-xl px-4 py-3"
-              />
-            </label>
-            <label className="block text-sm font-bold">
-              Password
-              <input
-                required
-                type="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                className="human-input mt-1.5 w-full rounded-xl px-4 py-3"
-              />
-            </label>
-            <button
-              type="button"
-              onClick={handleForgotPassword}
-              className="text-sm font-bold text-[#176b87] hover:underline"
-            >
-              Forgot password?
-            </button>
-            <button
-              disabled={loading}
-              className="btn-colorful-primary w-full rounded-xl px-4 py-3 font-bold text-white disabled:opacity-60"
-            >
-              {loading ? "Signing in..." : `Sign in as ${title}`}
-            </button>
+            {error && (
+              <div
+                role="alert"
+                className="mt-5 rounded-xl border border-[#d9534f]/30 bg-[#fff0ef] p-3.5 text-xs font-medium leading-relaxed text-[#b63d39]"
+              >
+                {error}
+              </div>
+            )}
 
-            <div className="pt-2">
+            {success && (
+              <div
+                role="status"
+                className="mt-5 rounded-xl border border-[#23845b]/30 bg-[#edf8f2] p-3 text-sm text-[#176b50]"
+              >
+                {success}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+              <label className="block text-sm font-bold">
+                Email
+                <input
+                  required
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  className="human-input mt-1.5 w-full rounded-xl px-4 py-3"
+                />
+              </label>
+              <label className="block text-sm font-bold">
+                Password
+                <input
+                  required
+                  type="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  className="human-input mt-1.5 w-full rounded-xl px-4 py-3"
+                />
+              </label>
               <button
                 type="button"
-                onClick={handleDemoLogin}
-                className="w-full py-2.5 px-4 rounded-xl border border-[#176b87]/30 bg-[#176b87]/10 hover:bg-[#176b87]/20 text-[#176b87] font-bold text-xs transition-colors flex items-center justify-center gap-2"
+                onClick={handleForgotPassword}
+                className="text-sm font-bold text-[#176b87] hover:underline"
               >
-                <span>🚀 Explore in Demo Mode ({entry === "mentor" ? "Mentor Portal" : entry === "admin" ? "Admin Console" : "Student Workspace"})</span>
+                Forgot password?
               </button>
-            </div>
-          </form>
+              <button
+                disabled={loading}
+                className="btn-colorful-primary w-full rounded-xl px-4 py-3 font-bold text-white disabled:opacity-60"
+              >
+                {loading ? "Signing in..." : `Sign in as ${title}`}
+              </button>
 
-          {entry === "student" && (
-            <Link
-              href="/student/register"
-              className="mt-5 block text-center text-sm font-bold text-[#176b87] hover:underline"
-            >
-              Create a student account
-            </Link>
-          )}
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={handleDemoLogin}
+                  className="w-full py-2.5 px-4 rounded-xl border border-[#176b87]/30 bg-[#176b87]/10 hover:bg-[#176b87]/20 text-[#176b87] font-bold text-xs transition-colors flex items-center justify-center gap-2"
+                >
+                  <span>🚀 Explore in Demo Mode ({entry === "mentor" ? "Mentor Portal" : entry === "admin" ? "Admin Console" : "Student Workspace"})</span>
+                </button>
+              </div>
+            </form>
 
-          {entry === "mentor" && (
-            <Link
-              href="/mentor/register"
-              className="mt-5 block text-center text-sm font-bold text-[#176b87] hover:underline"
-            >
-              Mentor onboarding information
-            </Link>
-          )}
+            {entry === "student" && (
+              <Link
+                href="/student/register"
+                className="mt-5 block text-center text-sm font-bold text-[#176b87] hover:underline"
+              >
+                Create a student account
+              </Link>
+            )}
+
+            {entry === "mentor" && (
+              <Link
+                href="/mentor/register"
+                className="mt-5 block text-center text-sm font-bold text-[#176b87] hover:underline"
+              >
+                Mentor onboarding information
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
-    </main>
-    <Footer />
-  </div>
-);
+      </main>
+      <Footer />
+    </div>
+  );
 }
