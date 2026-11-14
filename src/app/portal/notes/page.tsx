@@ -95,12 +95,18 @@ export default function MyNotesPage() {
           return;
         }
 
-        const { data: remoteNotes, error } = await supabase
-          .from("student_notes")
-          .select("id, course_slug, topic, title, content, updated_at")
-          .eq("user_id", userData.user.id)
-          .order("updated_at", { ascending: false });
+const currentUser = userData?.user;
 
+if (!currentUser) {
+  return;
+}
+
+const { data: remoteNotes, error } = await supabase
+  .from("student_notes")
+  .select("id, course_slug, topic, title, content, updated_at")
+  .eq("user_id", currentUser.id)
+  .order("updated_at", { ascending: false });
+  
         if (!error && remoteNotes && remoteNotes.length > 0) {
           const mapped: StudentNote[] = remoteNotes.map((rn) => {
             const matchedCourse = ANZEYL_COURSES.find((c) => c.slug === rn.course_slug);
